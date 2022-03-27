@@ -157,12 +157,11 @@ function match_info()
 		p=parseInt(matnum)-1;
 	}
 	divmat = "<table cellspacing='1' border='1'><tr bgcolor='00FFE0'><th align='center'>Match "+(p+1)+"</th><th align='center'>Team A</th><th align='center'>Team B</th></tr>";
-	divmat = divmat +"<tr><th align='left'>Name</th><td align='center'>"+teams_list[p]+"</td><td align='center'>"+teams_list[p]+"</td></tr>";
-	//divmat = divmat +"<tr><th align='left'>Name</th><td align='center'>"+teams_list[team1[p]]+"</td><td align='center'>"+teams_list[team2[p]]+"</td></tr>";
-	divmat = divmat +"<tr><th align='left'>Played</th><td align='center'>"+tem_play[team1[p]]+"</td><td align='center'>"+tem_play[team2[p]]+"</td></tr>";
-	divmat = divmat +"<tr><th align='left'>Won</th><td align='center'>"+tem_won[team1[p]]+"</td><td align='center'>"+tem_won[team2[p]]+"</td></tr>";
-	divmat = divmat +"<tr><th align='left'>Points</th><td align='center'>"+(tem_won[team1[p]]*2)+"</td><td align='center'>"+(tem_won[team2[p]]*2)+"</td></tr>";
-	divmat = divmat +"<tr><th align='left'>Supports</th><td align='center'>"+team1_bets[p]+"</td><td align='center'>"+team2_bets[p]+"</td></tr>";
+	divmat = divmat +"<tr><th align='left'>Name</th><td align='center'>"+teams_list[teams_list_st.indexOf(team1[p])]+"</td><td align='center'>"+teams_list[teams_list_st.indexOf(team2[p])]+"</td></tr>";
+	// divmat = divmat +"<tr><th align='left'>Played</th><td align='center'>"+tem_play[team1[p]]+"</td><td align='center'>"+tem_play[team2[p]]+"</td></tr>";
+	// divmat = divmat +"<tr><th align='left'>Won</th><td align='center'>"+tem_won[team1[p]]+"</td><td align='center'>"+tem_won[team2[p]]+"</td></tr>";
+	// divmat = divmat +"<tr><th align='left'>Points</th><td align='center'>"+(tem_won[team1[p]]*2)+"</td><td align='center'>"+(tem_won[team2[p]]*2)+"</td></tr>";
+  divmat = divmat +"<tr><th align='left'>Supports</th><td align='center'>"+team1_bets[p]+"</td><td align='center'>"+team2_bets[p]+"</td></tr>";
 	divmat = divmat +"<tr><th align='left'>Supporters</th><td align='center'>";
 	for(i=0;i<players;i++)
 		if(picks[i].pick[p] == team1[p])

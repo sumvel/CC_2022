@@ -72,6 +72,25 @@
 	divran = divran +"</table>";
 	document.getElementById('ranks').innerHTML= divran;
 	
+	
+	/*=======================*\
+			Home
+	\*=======================*/
+	divhome = "<div></div><table><tr align='center' valign='top'><td valign='top'><select id = 'match_id' size ='1' onchange = 'match_info()'>";
+	divhome = divhome +"<option value='default'>&nbsp</option>";
+	for(i=0;i<matches;i++)
+		divhome = divhome +"<option value='" + (i+1) + "'>Match " + (i+1) + "</option>";
+	divhome = divhome +"</select></td></tr><tr><td><div id='mat_table'></div></td></tr></table>";
+	/*divhome = divhome +"<table><tr><td><font color = 'white'>past_score["+(match_result.length-1)+"].val = new Array("+player_score.toString()+ ");<br>";
+	divhome = divhome +"past_rank["+(match_result.length-1)+"].val = new Array("+ player_ranks.toString()+");<font></td></tr></table>";*/
+	/*
+	document.write("past_score["+(match_result.length-1)+"].val = new Array("+player_score.toString()+ ");<br>");
+	document.write("past_rank["+(match_result.length-1)+"].val = new Array("+ player_ranks.toString()+");");
+	*/
+
+	document.getElementById('homediv').innerHTML= divhome;
+	match_info();
+
 	/*=======================*\
 		Schedule
 	\*=======================*/
