@@ -6,11 +6,11 @@ function sel_team()
 		tabid.rows[i].style.display = '';
 	if(boxid.options[boxid.selectedIndex].value !="ALL")
 		for(i=match_result.length,j=1;i<matches;j++,i++)
-			if(teams_list[team1[i]] != boxid.options[boxid.selectedIndex].value && teams_list[team2[i]] != boxid.options[boxid.selectedIndex].value)
+			if(team1[i] != boxid.options[boxid.selectedIndex].value && team2[i] != boxid.options[boxid.selectedIndex].value)
 				tabid.rows[j].style.display = 'none';
 }
 
-function res_team()
+/*function res_team()
 {
 	var tabid = document.getElementById("tab_res");
 	var boxid = document.getElementById('result_team');
@@ -18,9 +18,9 @@ function res_team()
 		tabid.rows[i].style.display = '';
 	if(boxid.options[boxid.selectedIndex].value !="ALL")
 		for(i=0,j=1;i<match_result.length;j++,i++)
-			if(teams_list[team1[i]] != boxid.options[boxid.selectedIndex].value && teams_list[team2[i]] != boxid.options[boxid.selectedIndex].value)
+			if(team1[i] != boxid.options[boxid.selectedIndex].value && team2[i] != boxid.options[boxid.selectedIndex].value)
 				tabid.rows[j].style.display = 'none';
-}
+}*/
 
 function sort_value(iname, istart, istop, vname)
 {
@@ -103,37 +103,37 @@ function player_info()
 			divplycom = divplycom + "<td  bgcolor='yellow'>";
 		else
 			divplycom = divplycom + "<td>";
-		divplycom = divplycom + team1[i]+"</td>";
+		divplycom = divplycom + teams_list[teams_list_st.indexOf(team1[i])]+"</td>";
 		if(i<match_result.length && match_result[i] == team2[i])
 			divplycom = divplycom + "<td  bgcolor='yellow'>";
 		else
 			divplycom = divplycom + "<td>";
-		divplycom = divplycom + team2[i]+"</td>";
-		if(ply1!=100)
+		divplycom = divplycom + teams_list[teams_list_st.indexOf(team2[i])]+"</td>";
+		if(ply1!=1000)
 		{
 			if(i<match_result.length && match_result[i] == picks[ply1].pick[i])
 				divplycom = divplycom +"<td  bgcolor='lime'>";
 			else
 				divplycom = divplycom +"<td>";
-			divplycom = divplycom +teams_list[picks[ply1].pick[i]];
+			divplycom = divplycom +teams_list[teams_list_st.indexOf(picks[ply1].pick[i])];
 			divplycom = divplycom +"</td>";
 		}
-		if(ply2!=100)
+		if(ply2!=1000)
 		{
 			if(i<match_result.length && match_result[i] == picks[ply2].pick[i])
 				divplycom = divplycom +"<td  bgcolor='olive'>";
 			else
 				divplycom = divplycom +"<td>";
-			divplycom = divplycom +teams_list[picks[ply2].pick[i]];
+			divplycom = divplycom +teams_list[teams_list_st.indexOf(picks[ply2].pick[i])];
 			divplycom = divplycom +"</td>";
 		}
-		if(ply3!=100)
+		if(ply3!=1000)
 		{
 			if(i<match_result.length && match_result[i] == picks[ply3].pick[i])
 				divplycom = divplycom +"<td  bgcolor='silver'>";
 			else
 				divplycom = divplycom +"<td>";
-			divplycom = divplycom +teams_list[picks[ply3].pick[i]];
+			divplycom = divplycom +teams_list[teams_list_st.indexOf(picks[ply3].pick[i])];
 			divplycom = divplycom +"</td>";
 		}
 		divplycom = divplycom +"</tr>";
@@ -389,3 +389,110 @@ function semi_info()
 	divplycom = divplycom +"</tr></table>";
 	document.getElementById('semitable').innerHTML= divplycom;
 }
+
+function home_button()
+{
+	document.getElementById('ranks').style.display = '';
+	document.getElementById('homediv').style.display = '';
+	document.getElementById('schedulediv').style.display = 'none';
+	document.getElementById('resultsdiv').style.display = 'none';
+	document.getElementById('comparediv').style.display = 'none';
+	document.getElementById('tstatsdiv').style.display = 'none';
+	document.getElementById('pstatsdiv').style.display = 'none';
+	document.getElementById('preddiv').style.display = 'none';
+	document.getElementById('semifinaldiv').style.display = 'none';
+}
+
+function schedule_button()
+{
+	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('homediv').style.display = 'none';
+	document.getElementById('schedulediv').style.display = '';
+	document.getElementById('resultsdiv').style.display = 'none';
+	document.getElementById('comparediv').style.display = 'none';
+	document.getElementById('tstatsdiv').style.display = 'none';
+	document.getElementById('pstatsdiv').style.display = 'none';
+	document.getElementById('preddiv').style.display = 'none';
+	document.getElementById('semifinaldiv').style.display = 'none';
+}
+
+function results_button()
+{
+	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('homediv').style.display = 'none';
+	document.getElementById('schedulediv').style.display = 'none';
+	document.getElementById('resultsdiv').style.display = '';
+	document.getElementById('comparediv').style.display = 'none';
+	document.getElementById('tstatsdiv').style.display = 'none';
+	document.getElementById('pstatsdiv').style.display = 'none';
+	document.getElementById('preddiv').style.display = 'none';
+	document.getElementById('semifinaldiv').style.display = 'none';
+}
+
+function compare_button()
+{
+	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('homediv').style.display = 'none';
+	document.getElementById('schedulediv').style.display = 'none';
+	document.getElementById('resultsdiv').style.display = 'none';
+	document.getElementById('comparediv').style.display = '';
+	document.getElementById('tstatsdiv').style.display = 'none';
+	document.getElementById('pstatsdiv').style.display = 'none';
+	document.getElementById('preddiv').style.display = 'none';
+	document.getElementById('semifinaldiv').style.display = 'none';
+}
+
+function tstats_button()
+{
+	document.getElementById('ranks').style.display = '';
+	document.getElementById('homediv').style.display = 'none';
+	document.getElementById('schedulediv').style.display = 'none';
+	document.getElementById('resultsdiv').style.display = 'none';
+	document.getElementById('comparediv').style.display = 'none';
+	document.getElementById('tstatsdiv').style.display = '';
+	document.getElementById('pstatsdiv').style.display = 'none';
+	document.getElementById('preddiv').style.display = 'none';
+	document.getElementById('semifinaldiv').style.display = 'none';
+}
+
+function pstats_button()
+{
+	document.getElementById('ranks').style.display = '';
+	document.getElementById('homediv').style.display = 'none';
+	document.getElementById('schedulediv').style.display = 'none';
+	document.getElementById('resultsdiv').style.display = 'none';
+	document.getElementById('comparediv').style.display = 'none';
+	document.getElementById('tstatsdiv').style.display = 'none';
+	document.getElementById('pstatsdiv').style.display = '';
+	document.getElementById('preddiv').style.display = 'none';
+	document.getElementById('semifinaldiv').style.display = 'none';
+}
+
+function prediction_button()
+{
+	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('homediv').style.display = 'none';
+	document.getElementById('schedulediv').style.display = 'none';
+	document.getElementById('resultsdiv').style.display = 'none';
+	document.getElementById('comparediv').style.display = 'none';
+	document.getElementById('tstatsdiv').style.display = 'none';
+	document.getElementById('pstatsdiv').style.display = 'none';
+	document.getElementById('preddiv').style.display = '';
+	document.getElementById('semifinaldiv').style.display = 'none';
+}
+
+function Semi_Final_button()
+{
+	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('homediv').style.display = 'none';
+	document.getElementById('schedulediv').style.display = 'none';
+	document.getElementById('resultsdiv').style.display = 'none';
+	document.getElementById('comparediv').style.display = 'none';
+	document.getElementById('tstatsdiv').style.display = 'none';
+	document.getElementById('pstatsdiv').style.display = 'none';
+	document.getElementById('preddiv').style.display = 'none';
+	document.getElementById('semifinaldiv').style.display = '';
+}
+
+
+
