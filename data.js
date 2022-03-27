@@ -4,7 +4,7 @@ var r3_end = 15;//70;
 var r3_exists = false;
 var match_result = new Array();
 match_result[0] = "KKR";
-match_result[1] = "DC";
+match_result[1] = "MI";
 var semi_result = new Array();
 
 var teams_list = new Array("Chennai Super Kings", "Delhi Capitals", "Gujarat Titans", "Kolkata Knight Riders", "Lucknow Super Gaints", "Mumbai Indians", "Punjab Kings", "Royal Challengers Banglore", "Rajasthan Royals", "Sun Risers Hyderabad");

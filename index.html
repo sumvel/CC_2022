@@ -173,6 +173,101 @@
 	player_info();
 
 	/*=======================*\
+			Team Stats
+	\*=======================*/
+	divsas = "<h3>Points</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>Team</th><th align='center'>Played</th><th align='center'>Won</th><th align='center'>Lost</th><th align='center'>Points</th></tr>";
+	var tem_play = new Array();
+	var tem_won = new Array();
+	var tem_won1 = new Array();
+	var tem_pts = new Array();
+	var supps1 = new Array();
+	var supps2 = new Array();
+	var supps3 = new Array();
+	var supps = new Array();
+	var new_teams_list = new Array();
+	var new_teams_list1 = new Array();
+	for(i=0;i<teams;i++)
+	{
+		tem_play[i] = 0;
+		tem_won[i] = 0;
+		tem_pts[i] = 0;
+		supps1[i] = 0;
+		supps2[i] = 0;
+		supps3[i] = 0;
+		supps[i] = 0;
+		new_teams_list[i] = teams_list[i];
+		new_teams_list1[i] = teams_list[i];
+		for(j=0;j<match_result.length;j++)
+		{
+			if(team1[j] == teams_list_st[i] || team2[j] == teams_list_st[i])
+				tem_play[i]++;
+			if(match_result[j] == teams_list_st[i])
+			{
+				tem_won[i]++;
+				tem_pts[i] = tem_pts[i] +2;
+			}
+			else if(match_result[j] == 12)
+				if(team1[j] == teams_list_st[i] || team2[j] == teams_list_st[i])
+				tem_pts[i]++;
+		}
+		tem_won1[i] = tem_won[i];
+		for(j=0;j<players;j++){
+			for(k=0;k<r1_end;k++)
+				if(picks[j].pick[k] == teams_list_st[i])
+					supps1[i]++;
+			for(k=r1_end;k<r2_end;k++)
+				if(picks[j].pick[k] == teams_list_st[i])
+					supps2[i]++;
+			for(k=r2_end;k<r3_end;k++)
+				if(picks[j].pick[k] == teams_list_st[i])
+					supps3[i]++;}
+		supps[i]=supps1[i]+supps2[i]+supps3[i];
+	}
+	sort_value(new_teams_list, 0, tem_won.length-1, tem_pts);
+	for(i=0;i<new_teams_list.length;i++)
+	{
+		if(i%2 != 0)
+			divsas = divsas + "<tr bgcolor='#D8D8D8'>";
+		else
+			divsas = divsas + "<tr bgcolor='#F8F8F8'>";
+		divsas = divsas + "<td align='center'>"+ new_teams_list[i] + "</td><td align='center'>";
+		for(j=0;j<teams;j++)
+			if(new_teams_list[i] == teams_list[j])
+				divsas = divsas + tem_play[j] +"</td><td align='center'>" + tem_won1[j] +"</td><td align='center'>" + (tem_play[j] - tem_won1[j]) +"</td><td align='center'>" + tem_pts[i] +"</td></tr>";
+				//divsas = divsas + tem_play[j] +"</td><td align='center'>" + tem_won1[i] +"</td><td align='center'>" + (tem_play[j] - tem_won1[i]) +"</td><td align='center'>" + (tem_won1[i]*2) +"</td></tr>";
+				//divsas = divsas + tem_play[j] +"</td><td align='center'>" + tem_won[i] +"</td><td align='center'>" + (tem_play[j] - tem_won[i]) +"</td><td align='center'>" + (tem_won[i]*2) +"</td><td align='center'>" + supps[j] +"</td></tr>";
+	}
+	divsas = divsas + "</table><h3>Supports</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>Team</th><th align='center'>Round 1</th>";
+	if(r2_end > r1_end)
+		divsas = divsas + "<th align='center'>Round 2</th>";
+	if(r3_end > r2_end)
+		divsas = divsas + "<th align='center'>Round 2</th>";
+	divsas = divsas + "<th align='center'>Total</th></tr>";
+	sort_value(new_teams_list1, 0, supps.length-1, supps);
+	for(i=0;i<new_teams_list.length;i++)
+	{
+		if(i%2 != 0)
+			divsas = divsas + "<tr bgcolor='#D8D8D8'>";
+		else
+			divsas = divsas + "<tr bgcolor='#F8F8F8'>";
+		divsas = divsas + "<td align='center'>"+ new_teams_list1[i] + "</td><td align='center'>";
+		for(j=0;j<teams;j++)
+			if(new_teams_list1[i] == teams_list[j])
+			{
+				divsas = divsas + supps1[j] +"</td>";
+				if(r2_end > r1_end)
+					divsas = divsas + "<td align='center'>" + supps2[j] +"</td>";
+				if(r3_end > r2_end)
+					divsas = divsas + "<td align='center'>" + supps3[j] +"</td>";
+				divsas = divsas + "<td align='center'>" + supps[i] +"</td></tr>";
+				//divsas = divsas + tem_play[j] +"</td><td align='center'>" + tem_won[i] +"</td><td align='center'>" + (tem_play[j] - tem_won[i]) +"</td><td align='center'>" + (tem_won[i]*2) +"</td><td align='center'>" + supps[j] +"</td></tr>";
+			}
+	}
+	divsas = divsas + "</table>";
+	document.getElementById('tstatsdiv').innerHTML= divsas;
+
+
+	/*=======================*\
 			Player Stats
 	\*=======================*/
 	divpsas = "<table align='center'><tr><th align ='left' colspan='3'>Select a player to view his stats</th></tr>";
