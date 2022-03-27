@@ -25,7 +25,7 @@
 				<!-- ranks table-->	
 				<table><tr><td><div id="ranks"></div></td></tr></table>
 				</td>
-				<td  align ='center'>
+				<td  align ='center' valign='top'>
 				<!-- body table-->
 					<table align ='center'><tr>
 						<td><div id="homediv"></div></td>
@@ -76,7 +76,7 @@
 	/*=======================*\
 			Home
 	\*=======================*/
-	divhome = "<div></div><table><tr align='center' valign='top'><td valign='top'><select id = 'match_id' size ='1' onchange = 'match_info()'>";
+	divhome = "<table><tr align='center' valign='top'><td valign='top'><select id = 'match_id' size ='1' onchange = 'match_info()'>";
 	divhome = divhome +"<option value='default'>&nbsp</option>";
 	for(i=0;i<matches;i++)
 		divhome = divhome +"<option value='" + (i+1) + "'>Match " + (i+1) + "</option>";
@@ -171,6 +171,68 @@
 	divcom = divcom +"</select></td></tr></table><br><div id='comtable'>";
 	document.getElementById('comparediv').innerHTML= divcom;
 	player_info();
+
+	/*=======================*\
+			Player Stats
+	\*=======================*/
+	divpsas = "<table align='center'><tr><th align ='left' colspan='3'>Select a player to view his stats</th></tr>";
+	divpsas = divpsas + "<tr><td><select id = 'player_drop' size ='1' onchange = 'player_stats()'>";
+	divpsas = divpsas +"<option value='default'>&nbsp</option>";
+	for(i=0;i<players;i++)
+		divpsas = divpsas +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i].toUpperCase() + "</option>";
+	divpsas = divpsas +"</select></td></tr><tr><td><div id='ply_table'></div></td></tr></table>";
+	document.getElementById('pstatsdiv').innerHTML= divpsas;
+
+	/*=======================*\
+			Predictions
+	\*=======================*/
+	var q = match_result.length; 
+	nex_scor = 1;
+	if(q>r1_end)
+		nex_scor = 2;
+	if(q>r2_end)
+		nex_scor = 3;
+	for(i=0;i<players;i++)
+	{
+		if(picks[i].pick[q] == team1[q])
+			score_prad1[i] = score_prad1[i] +nex_scor;
+		else if(picks[i].pick[q] == team2[q])
+			score_prad2[i] = score_prad2[i] +nex_scor;
+	}
+	sort_value(list_prad1, 0, players-1, score_prad1);
+	sort_value(list_prad2, 0, players-1, score_prad2);
+
+	divpre = "<a align = 'center'>Predictions after Match "+(q+1)+"</a>";
+	divpre = divpre +"<table><tr><td><table border='0' cellspacing='2'><tr bgcolor='silver'><td align ='center' colspan='3'>If "+teams_list[teams_list_st.indexOf(team1[q])]+" wins</td></tr><tr bgcolor='00FFE0'><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
+	for(j=0;j<players;j++)
+	{
+		if(j%2 != 0)
+			divpre = divpre + "<tr bgcolor='#D8D8D8'>";
+		else
+			divpre = divpre + "<tr bgcolor='#F8F8F8'>";
+		divpre = divpre + "<td align ='center'>";
+		if(j!=0 && score_prad1[j] == score_prad1[j-1])
+			divpre = divpre +"&nbsp";
+		else
+			divpre = divpre + (j+1);
+		divpre = divpre + "</td><td>" + list_prad1[j].toUpperCase() +"</td><td align='center'>"+score_prad1[j] +"</td></tr>";
+	}
+	divpre = divpre +"</table></td><td><table border='0' cellspacing='2'><tr bgcolor='silver'><td align ='center' colspan='3'>If "+teams_list[teams_list_st.indexOf(team2[q])]+" wins</td></tr><tr bgcolor='00FFE0'><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
+	for(j=0;j<players;j++)
+	{
+		if(j%2 != 0)
+			divpre = divpre + "<tr bgcolor='#D8D8D8'>";
+		else
+			divpre = divpre + "<tr bgcolor='#F8F8F8'>";
+		divpre = divpre + "<td align ='center'>";
+		if(j!=0 && score_prad2[j] == score_prad2[j-1])
+			divpre = divpre +"&nbsp";
+		else
+			divpre = divpre + (j+1);
+		divpre = divpre + "</td><td>" + list_prad2[j].toUpperCase() +"</td><td align='center'>"+score_prad2[j] +"</td></tr>";
+	}
+	divpre = divpre +"</table></td></tr></table>";
+	document.getElementById('preddiv').innerHTML= divpre;
 
 	</script>	
 	</BODY>

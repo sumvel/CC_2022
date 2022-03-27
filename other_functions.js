@@ -192,7 +192,7 @@ function player_stats()
 		supps[j].supp = new Array(0,0,0);
 	for(j=0;j<r1_end;j++)
 	{
-		if(picks[i].pick[j] !=10)
+		if(picks[i].pick[j] !="NONE")
 			selected[0]++;
 		if(picks[i].pick[j] == match_result[j])
 		{
@@ -200,12 +200,12 @@ function player_stats()
 			pts[0]++;
 		}
 		for(k=0;k<teams;k++)
-			if(picks[i].pick[j] == k)
+			if(picks[i].pick[j] == teams_list_st[k])
 				supps[k].supp[0]++;
 	}
 	for(;j<r2_end;j++)
 	{
-		if(picks[i].pick[j] !=10)
+		if(picks[i].pick[j] !="NONE")
 			selected[1]++;
 		if(picks[i].pick[j] == match_result[j])
 		{
@@ -213,12 +213,12 @@ function player_stats()
 			pts[1]= pts[1]+2;
 		}
 		for(k=0;k<teams;k++)
-			if(picks[i].pick[j] == k)
+			if(picks[i].pick[j] == teams_list_st[k])
 				supps[k].supp[1]++;
 	}
 	for(;j<r3_end;j++)
 	{
-		if(picks[i].pick[j] !=10)
+		if(picks[i].pick[j] !="NONE")
 			selected[2]++;
 		if(picks[i].pick[j] == match_result[j])
 		{
@@ -226,26 +226,42 @@ function player_stats()
 			pts[2]= pts[2]+3;
 		}
 		for(k=0;k<teams;k++)
-			if(picks[i].pick[j] == k)
+			if(picks[i].pick[j] == teams_list_st[k])
 				supps[k].supp[2]++;
 	}
-	divp = "<table border='0'><tr><td><h3>Points</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'></th><th align='center'>Round 1</th><th align='center'>Round 2</th><th align='center'>Total</th></tr>";//<th align='center'>Round 3</th>
-	divp = divp + "<tr bgcolor='#F8F8F8'>";		
+	divp = "<table border='0'><tr><td><h3>Points</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'></th><th align='center'>Round 1</th>";
+	if(r2_end > r1_end)
+		divp = divp + "<th align='center'>Round 2</th>";
+	if(r3_end > r2_end)
+		divp = divp + "<th align='center'>Round 3</th>";
+	divp = divp + "<th align='center'>Total</th></tr><tr bgcolor='#F8F8F8'>";		
 	divp = divp + "<th>Selections</th>";
-	for(k=0;k<2;k++)
-		divp = divp + "<td align='center'>"+selected[k] +"</td>";
+	divp = divp + "<td align='center'>"+selected[0] +"</td>";
+	if(r2_end > r1_end)
+		divp = divp + "<td align='center'>"+selected[1] +"</td>";
+	if(r3_end > r2_end)
+		divp = divp + "<td align='center'>"+selected[2] +"</td>";
 	divp = divp + "<td align='center'>"+(selected[0]+selected[1]+selected[2]) +"</td></tr>";
-	divp = divp + "<tr bgcolor='#D8D8D8'>";		
-	divp = divp + "<th>Won</th>";
-	for(k=0;k<2;k++)
-		divp = divp + "<td align='center'>"+won[k] +"</td>";
+	divp = divp + "<tr bgcolor='#D8D8D8'><th>Won</th>";
+	divp = divp + "<td align='center'>"+won[0] +"</td>";
+	if(r2_end > r1_end)
+		divp = divp + "<td align='center'>"+won[1] +"</td>";
+	if(r3_end > r2_end)
+		divp = divp + "<td align='center'>"+won[2] +"</td>";
 	divp = divp + "<td align='center'>"+(won[0]+won[1]+won[2]) +"</td></tr>";
-	divp = divp + "<tr bgcolor='#F8F8F8'>";		
-	divp = divp + "<th>Points</th>";
-	for(k=0;k<2;k++)
-		divp = divp + "<td align='center'>"+pts[k] +"</td>";
+	divp = divp + "<tr bgcolor='#F8F8F8'><th>Points</th>";
+	divp = divp + "<td align='center'>"+pts[0] +"</td>";
+	if(r2_end > r1_end)
+		divp = divp + "<td align='center'>"+pts[1] +"</td>";
+	if(r3_end > r2_end)
+		divp = divp + "<td align='center'>"+pts[2] +"</td>";
 	divp = divp + "<td align='center'>"+(pts[0]+pts[1]+pts[2]) +"</td></tr>";
-	divp = divp + "</table><h3>Supports</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>Team</th><th align='center'>Round 1</th><th align='center'>Round 2</th><th align='center'>Total</th></tr>";//<th align='center'>Round 3</th>
+	divp = divp + "</table><h3>Supports</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>Team</th><th align='center'>Round 1</th>";
+	if(r2_end > r1_end)
+		divp = divp + "<th align='center'>Round 2</th>";
+	if(r3_end > r2_end)
+		divp = divp + "<th align='center'>Round 3</th>";
+	divp = divp + "<th align='center'>Total</th></tr>";//
 	for(j=0;j<teams;j++)
 	{
 		if(j%2 != 0)
@@ -253,8 +269,11 @@ function player_stats()
 		else
 			divp = divp + "<tr bgcolor='#F8F8F8'>";
 		divp = divp +"<th align='center'>"+teams_list[j]+"</th>";
-		for(k=0;k<2;k++)
-			divp = divp + "<td align='center'>"+supps[j].supp[k] +"</td>";
+		divp = divp + "<td align='center'>"+supps[j].supp[0] +"</td>";
+		if(r2_end > r1_end)
+			divp = divp + "<td align='center'>"+supps[j].supp[1] +"</td>";
+		if(r3_end > r2_end)
+			divp = divp + "<td align='center'>"+supps[j].supp[2] +"</td>";
 		divp = divp + "<td align='center'>"+(supps[j].supp[0]+supps[j].supp[1]+supps[j].supp[2]) +"</td></tr>";
 	}
 	divp = divp + "</table></td><td><h3>Performance</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>Match</th><th align='center'>Score</th><th align='center'>Rank</th>";
