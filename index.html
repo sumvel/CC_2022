@@ -15,7 +15,7 @@
 				<td><input type=button value="Schedule" name="schedule" onclick="schedule_button()"></td>
 				<td><input type=button value="Results" name="results" onclick="results_button()"></td><!---->
 				<td><input type=button value="Compare" name="compare" onclick="compare_button()"></td>
-				<td><input type=button value="Team Stats" name="tstats" onclick="tstats_button()"></td>
+				<td><input type=button value="IPL Team Stats" name="tstats" onclick="tstats_button()"></td>
 				<td><input type=button value="Player Stats" name="pstats" onclick="pstats_button()"></td>
 				<td><input type=button value="Predictions" name="predtab" onclick="prediction_button()"></td>
 				<!--<td><input type=button value="Semifinals/Finals" name="sftab" onclick="Semi_Final_button()"></td>-->
@@ -72,24 +72,7 @@
 	divran = divran +"</table>";
 	document.getElementById('ranks').innerHTML= divran;
 	
-	
-	/*=======================*\
-			Home
-	\*=======================*/
-	divhome = "<table><tr align='center' valign='top'><td valign='top'><select id = 'match_id' size ='1' onchange = 'match_info()'>";
-	divhome = divhome +"<option value='default'>&nbsp</option>";
-	for(i=0;i<matches;i++)
-		divhome = divhome +"<option value='" + (i+1) + "'>Match " + (i+1) + "</option>";
-	divhome = divhome +"</select></td></tr><tr><td><div id='mat_table'></div></td></tr></table>";
-	/*divhome = divhome +"<table><tr><td><font color = 'white'>past_score["+(match_result.length-1)+"].val = new Array("+player_score.toString()+ ");<br>";
-	divhome = divhome +"past_rank["+(match_result.length-1)+"].val = new Array("+ player_ranks.toString()+");<font></td></tr></table>";*/
-	/*
-	document.write("past_score["+(match_result.length-1)+"].val = new Array("+player_score.toString()+ ");<br>");
-	document.write("past_rank["+(match_result.length-1)+"].val = new Array("+ player_ranks.toString()+");");
-	*/
 
-	document.getElementById('homediv').innerHTML= divhome;
-	match_info();
 
 	/*=======================*\
 		Schedule
@@ -105,11 +88,11 @@
 		j = i+1;
 		divsch = divsch +"<tr><td align='center'>"+j+"</td><td align='center'>&nbsp;"+dat[i] +"&nbsp;</td><td align='center'>"+teams_list[teams_list_st.indexOf(team1[i])];
 		if(team1_bets[i]>=team2_bets[i])
-			divsch = divsch + "</td><td align='center' bgcolor='Lime'>" + team1_bets[i] + "</td><td align='center'>"+teams_list[teams_list_st.indexOf(team2[i])];
+			divsch = divsch + "</td><td align='center' bgcolor='gold'>" + team1_bets[i] + "</td><td align='center'>"+teams_list[teams_list_st.indexOf(team2[i])];
 		else
 			divsch = divsch + "</td><td align='center'>" + team1_bets[i] + "</td><td align='center'>"+teams_list[teams_list_st.indexOf(team2[i])];
 		if(team1_bets[i]<=team2_bets[i])
-			divsch = divsch + "</td><td align='center' bgcolor='Lime'>"+team2_bets[i]+"</td></tr>";
+			divsch = divsch + "</td><td align='center' bgcolor='gold'>"+team2_bets[i]+"</td></tr>";
 		else
 			divsch = divsch + "</td><td align='center'>"+team2_bets[i]+"</td></tr>";
 	}
@@ -129,19 +112,19 @@
 	{
 		divres = divres + "<tr><td align='center'>" + (i+1) + "</td><td align='center'>&nbsp;" + dat[i] + "&nbsp;</td>";
 		if(match_result[i] == team1[i])
-			divres = divres + "<td align='center' bgcolor='yellow'>"+ teams_list[teams_list_st.indexOf(team1[i])]; 
+			divres = divres + "<td align='center' bgcolor='Lime'>"+ teams_list[teams_list_st.indexOf(team1[i])]; 
 		else
 			divres = divres + "<td align='center'>"+ teams_list[teams_list_st.indexOf(team1[i])];
 		if(team1_bets[i]>=team2_bets[i])
-			divres = divres + "</td><td align='center' bgcolor='Lime'>" + team1_bets[i] + "</td>";
+			divres = divres + "</td><td align='center' bgcolor='gold'>" + team1_bets[i] + "</td>";
 		else
 			divres = divres + "</td><td align='center'>" + team1_bets[i] + "</td>";
 		if(match_result[i] == team2[i])
-			divres = divres + "<td align='center' bgcolor='yellow'>"+ teams_list[teams_list_st.indexOf(team2[i])];
+			divres = divres + "<td align='center' bgcolor='Lime'>"+ teams_list[teams_list_st.indexOf(team2[i])];
 		else
 			divres = divres + "<td align='center'>"+ teams_list[teams_list_st.indexOf(team2[i])];
 		if(team1_bets[i]<=team2_bets[i])
-			divres = divres + "</td><td align='center' bgcolor='Lime'>" + team2_bets[i] + "</td></tr>";
+			divres = divres + "</td><td align='center' bgcolor='gold'>" + team2_bets[i] + "</td></tr>";
 		else
 			divres = divres + "</td><td align='center'>" + team2_bets[i] + "</td></tr>";
 	}
@@ -175,7 +158,7 @@
 	/*=======================*\
 			Team Stats
 	\*=======================*/
-	divsas = "<h3>Points</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>Team</th><th align='center'>Played</th><th align='center'>Won</th><th align='center'>Lost</th><th align='center'>Points</th></tr>";
+	divsas = "<h3>Points</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>IPL Team</th><th align='center'>Played</th><th align='center'>Won</th><th align='center'>Lost</th><th align='center'>Points</th></tr>";
 	var tem_play = new Array();
 	var tem_won = new Array();
 	var tem_won1 = new Array();
@@ -237,7 +220,7 @@
 				//divsas = divsas + tem_play[j] +"</td><td align='center'>" + tem_won1[i] +"</td><td align='center'>" + (tem_play[j] - tem_won1[i]) +"</td><td align='center'>" + (tem_won1[i]*2) +"</td></tr>";
 				//divsas = divsas + tem_play[j] +"</td><td align='center'>" + tem_won[i] +"</td><td align='center'>" + (tem_play[j] - tem_won[i]) +"</td><td align='center'>" + (tem_won[i]*2) +"</td><td align='center'>" + supps[j] +"</td></tr>";
 	}
-	divsas = divsas + "</table><h3>Supports</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>Team</th><th align='center'>Round 1</th>";
+	divsas = divsas + "</table><h3>Supports</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>IPL Team</th><th align='center'>Round 1</th>";
 	if(r2_end > r1_end)
 		divsas = divsas + "<th align='center'>Round 2</th>";
 	if(r3_end > r2_end)
@@ -270,7 +253,7 @@
 	/*=======================*\
 			Player Stats
 	\*=======================*/
-	divpsas = "<table align='center'><tr><th align ='left' colspan='3'>Select a player to view his stats</th></tr>";
+	divpsas = "<table align='center'><tr><th align ='left' colspan='3'>Select a player to view their stats</th></tr>";
 	divpsas = divpsas + "<tr><td><select id = 'player_drop' size ='1' onchange = 'player_stats()'>";
 	divpsas = divpsas +"<option value='default'>&nbsp</option>";
 	for(i=0;i<players;i++)
@@ -328,6 +311,25 @@
 	}
 	divpre = divpre +"</table></td></tr></table>";
 	document.getElementById('preddiv').innerHTML= divpre;
+
+		
+	/*=======================*\
+			Home
+	\*=======================*/
+	divhome = "<table><tr align='center' valign='top'><td valign='top'><select id = 'match_id' size ='1' onchange = 'match_info()'>";
+	divhome = divhome +"<option value='default'>&nbsp</option>";
+	for(i=0;i<matches;i++)
+		divhome = divhome +"<option value='" + (i+1) + "'>Match " + (i+1) + "</option>";
+	divhome = divhome +"</select></td></tr><tr><td><div id='mat_table'></div></td></tr></table>";
+	/*divhome = divhome +"<table><tr><td><font color = 'white'>past_score["+(match_result.length-1)+"].val = new Array("+player_score.toString()+ ");<br>";
+	divhome = divhome +"past_rank["+(match_result.length-1)+"].val = new Array("+ player_ranks.toString()+");<font></td></tr></table>";*/
+	/*
+	document.write("past_score["+(match_result.length-1)+"].val = new Array("+player_score.toString()+ ");<br>");
+	document.write("past_rank["+(match_result.length-1)+"].val = new Array("+ player_ranks.toString()+");");
+	*/
+
+	document.getElementById('homediv').innerHTML= divhome;
+	match_info();
 
 	</script>	
 	</BODY>

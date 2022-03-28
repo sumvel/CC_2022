@@ -100,19 +100,19 @@ function player_info()
 	{
 		divplycom = divplycom + "<tr><td>"+(i+1)+"</td>";
 		if(i<match_result.length && match_result[i] == team1[i])
-			divplycom = divplycom + "<td  bgcolor='yellow'>";
+			divplycom = divplycom + "<td  bgcolor='Lime'>";
 		else
 			divplycom = divplycom + "<td>";
 		divplycom = divplycom + teams_list[teams_list_st.indexOf(team1[i])]+"</td>";
 		if(i<match_result.length && match_result[i] == team2[i])
-			divplycom = divplycom + "<td  bgcolor='yellow'>";
+			divplycom = divplycom + "<td  bgcolor='Lime'>";
 		else
 			divplycom = divplycom + "<td>";
 		divplycom = divplycom + teams_list[teams_list_st.indexOf(team2[i])]+"</td>";
 		if(ply1!=1000)
 		{
 			if(i<match_result.length && match_result[i] == picks[ply1].pick[i])
-				divplycom = divplycom +"<td  bgcolor='lime'>";
+				divplycom = divplycom +"<td  bgcolor='Lime'>";
 			else
 				divplycom = divplycom +"<td>";
 			divplycom = divplycom +teams_list[teams_list_st.indexOf(picks[ply1].pick[i])];
@@ -121,7 +121,7 @@ function player_info()
 		if(ply2!=1000)
 		{
 			if(i<match_result.length && match_result[i] == picks[ply2].pick[i])
-				divplycom = divplycom +"<td  bgcolor='olive'>";
+				divplycom = divplycom +"<td  bgcolor='Lime'>";
 			else
 				divplycom = divplycom +"<td>";
 			divplycom = divplycom +teams_list[teams_list_st.indexOf(picks[ply2].pick[i])];
@@ -130,7 +130,7 @@ function player_info()
 		if(ply3!=1000)
 		{
 			if(i<match_result.length && match_result[i] == picks[ply3].pick[i])
-				divplycom = divplycom +"<td  bgcolor='silver'>";
+				divplycom = divplycom +"<td  bgcolor='Lime'>";
 			else
 				divplycom = divplycom +"<td>";
 			divplycom = divplycom +teams_list[teams_list_st.indexOf(picks[ply3].pick[i])];
@@ -158,9 +158,9 @@ function match_info()
 	}
 	divmat = "<table cellspacing='1' border='1'><tr bgcolor='00FFE0'><th align='center'>Match "+(p+1)+"</th><th align='center'>Team A</th><th align='center'>Team B</th></tr>";
 	divmat = divmat +"<tr><th align='left'>Name</th><td align='center'>"+teams_list[teams_list_st.indexOf(team1[p])]+"</td><td align='center'>"+teams_list[teams_list_st.indexOf(team2[p])]+"</td></tr>";
-	// divmat = divmat +"<tr><th align='left'>Played</th><td align='center'>"+tem_play[team1[p]]+"</td><td align='center'>"+tem_play[team2[p]]+"</td></tr>";
-	// divmat = divmat +"<tr><th align='left'>Won</th><td align='center'>"+tem_won[team1[p]]+"</td><td align='center'>"+tem_won[team2[p]]+"</td></tr>";
-	// divmat = divmat +"<tr><th align='left'>Points</th><td align='center'>"+(tem_won[team1[p]]*2)+"</td><td align='center'>"+(tem_won[team2[p]]*2)+"</td></tr>";
+	divmat = divmat +"<tr><th align='left'>Played</th><td align='center'>"+tem_play[teams_list_st.indexOf(team1[p])]+"</td><td align='center'>"+tem_play[teams_list_st.indexOf(team2[p])]+"</td></tr>";
+	divmat = divmat +"<tr><th align='left'>Won</th><td align='center'>"+tem_won[teams_list_st.indexOf(team1[p])]+"</td><td align='center'>"+tem_won[teams_list_st.indexOf(team2[p])]+"</td></tr>";
+	divmat = divmat +"<tr><th align='left'>Points</th><td align='center'>"+(tem_won[teams_list_st.indexOf(team1[p])]*2)+"</td><td align='center'>"+(tem_won[teams_list_st.indexOf(team2[p])]*2)+"</td></tr>";
   divmat = divmat +"<tr><th align='left'>Supports</th><td align='center'>"+team1_bets[p]+"</td><td align='center'>"+team2_bets[p]+"</td></tr>";
 	divmat = divmat +"<tr><th align='left'>Supporters</th><td align='center'>";
 	for(i=0;i<players;i++)
@@ -423,7 +423,7 @@ function home_button()
 
 function schedule_button()
 {
-	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('ranks').style.display = '';
 	document.getElementById('homediv').style.display = 'none';
 	document.getElementById('schedulediv').style.display = '';
 	document.getElementById('resultsdiv').style.display = 'none';
@@ -436,7 +436,7 @@ function schedule_button()
 
 function results_button()
 {
-	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('ranks').style.display = '';
 	document.getElementById('homediv').style.display = 'none';
 	document.getElementById('schedulediv').style.display = 'none';
 	document.getElementById('resultsdiv').style.display = '';
@@ -488,7 +488,7 @@ function pstats_button()
 
 function prediction_button()
 {
-	document.getElementById('ranks').style.display = 'none';
+	document.getElementById('ranks').style.display = '';
 	document.getElementById('homediv').style.display = 'none';
 	document.getElementById('schedulediv').style.display = 'none';
 	document.getElementById('resultsdiv').style.display = 'none';
