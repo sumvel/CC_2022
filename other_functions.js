@@ -90,11 +90,11 @@ function player_info()
 	divplycom="";
 	divplycom = divplycom+"<table border ='1' align='center'><tr bgcolor='00FFE0'><th>#</th><th>Team A</th><th>Team B</th>";
 	if(ply1!=1000)
-		divplycom = divplycom + "<th>"+player_list[ply1].toUpperCase()+"'s Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply1]+"'s Selection</th>"; //.toUpperCase()
 	if(ply2!=1000)
-		divplycom = divplycom + "<th>"+player_list[ply2].toUpperCase()+"'s Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply2]+"'s Selection</th>"; //.toUpperCase()
 	if(ply3!=1000)
-		divplycom = divplycom + "<th>"+player_list[ply3].toUpperCase()+"'s Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply3]+"'s Selection</th>";// .toUpperCase()
 	divplycom = divplycom + "</tr>";
 	for(i=0;i<matches;i++)
 	{
@@ -165,11 +165,11 @@ function match_info()
 	divmat = divmat +"<tr><th align='left'>Supporters</th><td align='center'>";
 	for(i=0;i<players;i++)
 		if(picks[i].pick[p] == team1[p])
-			divmat = divmat + player_list[i].toUpperCase()+ "<br>";
+			divmat = divmat + player_list[i]+ "<br>";//.toUpperCase()
 	divmat = divmat + "</td><td align='center'>";
 	for(i=0;i<players;i++)
 		if(picks[i].pick[p] == team2[p])
-			divmat = divmat + player_list[i].toUpperCase()+ "<br>";
+			divmat = divmat + player_list[i]+ "<br>";//.toUpperCase()
 	divmat = divmat +"</td></tr>";
 	divmat = divmat +"</table>";
 	document.getElementById('mat_table').innerHTML= divmat;
@@ -311,11 +311,11 @@ function semi_info()
 	divplycom="";
 	divplycom = divplycom+"<table border ='1' align='center'><tr bgcolor='00FFE0'><th>Position</th><th>Teams</th>";
 	if(ply1!=100)
-		divplycom = divplycom + "<th>"+player_list[ply1].toUpperCase()+" Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply1]+" Selection</th>"; //.toUpperCase()
 	if(ply2!=100)
-		divplycom = divplycom + "<th>"+player_list[ply2].toUpperCase()+" Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply2]+" Selection</th>"; //.toUpperCase()
 	if(ply3!=100)
-		divplycom = divplycom + "<th>"+player_list[ply3].toUpperCase()+" Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply3]+" Selection</th>"; //.toUpperCase()
 	divplycom = divplycom + "</tr>";
 	for(i=0;i<4;i++)
 	{

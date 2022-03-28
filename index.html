@@ -67,7 +67,7 @@
 		else
 			divran = divran + player_ranks_ranks[j];
 	
-		divran = divran + "</td><td>" + player_list_ranks[j].toUpperCase() +"</td><td align='center'>"+player_score_ranks[j] +"</td></tr>";
+		divran = divran + "</td><td>" + player_list_ranks[j]+"</td><td align='center'>"+player_score_ranks[j] +"</td></tr>";  // .toUpperCase() 
 	}
 	divran = divran +"</table>";
 	document.getElementById('ranks').innerHTML= divran;
@@ -142,15 +142,15 @@
 	divcom = divcom + "<tr><td><select id = 'player_drop1' size ='1' onchange = 'player_info()'>";
 	divcom = divcom +"<option value='default'>&nbsp</option>";
 	for(i=0;i<players;i++)
-		divcom = divcom +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i].toUpperCase() + "</option>";
+		divcom = divcom +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i] + "</option>"; // .toUpperCase() 
 	divcom = divcom + "</select></td><td><select id = 'player_drop2' size ='1' onchange = 'player_info()'>";
 	divcom = divcom +"<option value='default'>&nbsp</option>";
 	for(i=0;i<players;i++)
-		divcom = divcom +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i].toUpperCase() + "</option>";
+		divcom = divcom +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i] + "</option>";// .toUpperCase() 
 	divcom = divcom + "</select></td><td><select id = 'player_drop3' size ='1' onchange = 'player_info()'>";
 	divcom = divcom +"<option value='default'>&nbsp</option>";
 	for(i=0;i<players;i++)
-		divcom = divcom +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i].toUpperCase() + "</option>";
+		divcom = divcom +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i] + "</option>";// .toUpperCase() 
 	divcom = divcom +"</select></td></tr></table><br><div id='comtable'>";
 	document.getElementById('comparediv').innerHTML= divcom;
 	player_info();
@@ -159,54 +159,54 @@
 			Team Stats
 	\*=======================*/
 	divsas = "<h3>Points</h3><table border='0'><tr bgcolor='00FFE0'><th align='center'>IPL Team</th><th align='center'>Played</th><th align='center'>Won</th><th align='center'>Lost</th><th align='center'>Points</th></tr>";
-	var tem_play = new Array();
-	var tem_won = new Array();
-	var tem_won1 = new Array();
-	var tem_pts = new Array();
-	var supps1 = new Array();
-	var supps2 = new Array();
-	var supps3 = new Array();
-	var supps = new Array();
-	var new_teams_list = new Array();
-	var new_teams_list1 = new Array();
-	for(i=0;i<teams;i++)
-	{
-		tem_play[i] = 0;
-		tem_won[i] = 0;
-		tem_pts[i] = 0;
-		supps1[i] = 0;
-		supps2[i] = 0;
-		supps3[i] = 0;
-		supps[i] = 0;
-		new_teams_list[i] = teams_list[i];
-		new_teams_list1[i] = teams_list[i];
-		for(j=0;j<match_result.length;j++)
-		{
-			if(team1[j] == teams_list_st[i] || team2[j] == teams_list_st[i])
-				tem_play[i]++;
-			if(match_result[j] == teams_list_st[i])
-			{
-				tem_won[i]++;
-				tem_pts[i] = tem_pts[i] +2;
-			}
-			else if(match_result[j] == 12)
-				if(team1[j] == teams_list_st[i] || team2[j] == teams_list_st[i])
-				tem_pts[i]++;
-		}
-		tem_won1[i] = tem_won[i];
-		for(j=0;j<players;j++){
-			for(k=0;k<r1_end;k++)
-				if(picks[j].pick[k] == teams_list_st[i])
-					supps1[i]++;
-			for(k=r1_end;k<r2_end;k++)
-				if(picks[j].pick[k] == teams_list_st[i])
-					supps2[i]++;
-			for(k=r2_end;k<r3_end;k++)
-				if(picks[j].pick[k] == teams_list_st[i])
-					supps3[i]++;}
-		supps[i]=supps1[i]+supps2[i]+supps3[i];
-	}
-	sort_value(new_teams_list, 0, tem_won.length-1, tem_pts);
+	// var tem_play = new Array();
+	// var tem_won = new Array();
+	// var tem_won1 = new Array();
+	// var tem_pts = new Array();
+	// var supps1 = new Array();
+	// var supps2 = new Array();
+	// var supps3 = new Array();
+	// var supps = new Array();
+	// var new_teams_list = new Array();
+	// var new_teams_list1 = new Array();
+	// for(i=0;i<teams;i++)
+	// {
+	// 	tem_play[i] = 0;
+	// 	tem_won[i] = 0;
+	// 	tem_pts[i] = 0;
+	// 	supps1[i] = 0;
+	// 	supps2[i] = 0;
+	// 	supps3[i] = 0;
+	// 	supps[i] = 0;
+	// 	new_teams_list[i] = teams_list[i];
+	// 	new_teams_list1[i] = teams_list[i];
+	// 	for(j=0;j<match_result.length;j++)
+	// 	{
+	// 		if(team1[j] == teams_list_st[i] || team2[j] == teams_list_st[i])
+	// 			tem_play[i]++;
+	// 		if(match_result[j] == teams_list_st[i])
+	// 		{
+	// 			tem_won[i]++;
+	// 			tem_pts[i] = tem_pts[i] +2;
+	// 		}
+	// 		else if(match_result[j] == 12)
+	// 			if(team1[j] == teams_list_st[i] || team2[j] == teams_list_st[i])
+	// 			tem_pts[i]++;
+	// 	}
+	// 	tem_won1[i] = tem_won[i];
+	// 	for(j=0;j<players;j++){
+	// 		for(k=0;k<r1_end;k++)
+	// 			if(picks[j].pick[k] == teams_list_st[i])
+	// 				supps1[i]++;
+	// 		for(k=r1_end;k<r2_end;k++)
+	// 			if(picks[j].pick[k] == teams_list_st[i])
+	// 				supps2[i]++;
+	// 		for(k=r2_end;k<r3_end;k++)
+	// 			if(picks[j].pick[k] == teams_list_st[i])
+	// 				supps3[i]++;}
+	// 	supps[i]=supps1[i]+supps2[i]+supps3[i];
+	// }
+	// sort_value(new_teams_list, 0, tem_won.length-1, tem_pts);
 	for(i=0;i<new_teams_list.length;i++)
 	{
 		if(i%2 != 0)
@@ -257,28 +257,28 @@
 	divpsas = divpsas + "<tr><td><select id = 'player_drop' size ='1' onchange = 'player_stats()'>";
 	divpsas = divpsas +"<option value='default'>&nbsp</option>";
 	for(i=0;i<players;i++)
-		divpsas = divpsas +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i].toUpperCase() + "</option>";
+		divpsas = divpsas +"<option value='" + player_list_asc[i] + "'>" + player_list_asc[i] + "</option>";// .toUpperCase() 
 	divpsas = divpsas +"</select></td></tr><tr><td><div id='ply_table'></div></td></tr></table>";
 	document.getElementById('pstatsdiv').innerHTML= divpsas;
 
 	/*=======================*\
 			Predictions
 	\*=======================*/
-	var q = match_result.length; 
-	nex_scor = 1;
-	if(q>r1_end)
-		nex_scor = 2;
-	if(q>r2_end)
-		nex_scor = 3;
-	for(i=0;i<players;i++)
-	{
-		if(picks[i].pick[q] == team1[q])
-			score_prad1[i] = score_prad1[i] +nex_scor;
-		else if(picks[i].pick[q] == team2[q])
-			score_prad2[i] = score_prad2[i] +nex_scor;
-	}
-	sort_value(list_prad1, 0, players-1, score_prad1);
-	sort_value(list_prad2, 0, players-1, score_prad2);
+	// var q = match_result.length; 
+	// nex_scor = 1;
+	// if(q>r1_end)
+	// 	nex_scor = 2;
+	// if(q>r2_end)
+	// 	nex_scor = 3;
+	// for(i=0;i<players;i++)
+	// {
+	// 	if(picks[i].pick[q] == team1[q])
+	// 		score_prad1[i] = score_prad1[i] +nex_scor;
+	// 	else if(picks[i].pick[q] == team2[q])
+	// 		score_prad2[i] = score_prad2[i] +nex_scor;
+	// }
+	// sort_value(list_prad1, 0, players-1, score_prad1);
+	// sort_value(list_prad2, 0, players-1, score_prad2);
 
 	divpre = "<a align = 'center'>Predictions after Match "+(q+1)+"</a>";
 	divpre = divpre +"<table><tr><td><table border='0' cellspacing='2'><tr bgcolor='silver'><td align ='center' colspan='3'>If "+teams_list[teams_list_st.indexOf(team1[q])]+" wins</td></tr><tr bgcolor='00FFE0'><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
@@ -293,7 +293,7 @@
 			divpre = divpre +"&nbsp";
 		else
 			divpre = divpre + (j+1);
-		divpre = divpre + "</td><td>" + list_prad1[j].toUpperCase() +"</td><td align='center'>"+score_prad1[j] +"</td></tr>";
+		divpre = divpre + "</td><td>" + list_prad1[j] +"</td><td align='center'>"+score_prad1[j] +"</td></tr>";// .toUpperCase() 
 	}
 	divpre = divpre +"</table></td><td><table border='0' cellspacing='2'><tr bgcolor='silver'><td align ='center' colspan='3'>If "+teams_list[teams_list_st.indexOf(team2[q])]+" wins</td></tr><tr bgcolor='00FFE0'><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
 	for(j=0;j<players;j++)
@@ -307,7 +307,7 @@
 			divpre = divpre +"&nbsp";
 		else
 			divpre = divpre + (j+1);
-		divpre = divpre + "</td><td>" + list_prad2[j].toUpperCase() +"</td><td align='center'>"+score_prad2[j] +"</td></tr>";
+		divpre = divpre + "</td><td>" + list_prad2[j] +"</td><td align='center'>"+score_prad2[j] +"</td></tr>";// .toUpperCase() 
 	}
 	divpre = divpre +"</table></td></tr></table>";
 	document.getElementById('preddiv').innerHTML= divpre;
