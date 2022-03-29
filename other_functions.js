@@ -90,11 +90,11 @@ function player_info()
 	divplycom="";
 	divplycom = divplycom+"<table border ='1' align='center'><tr bgcolor='00FFE0'><th>#</th><th>Team A</th><th>Team B</th>";
 	if(ply1!=1000)
-		divplycom = divplycom + "<th>"+player_list[ply1].toUpperCase()+"'s Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply1]+"'s Selection</th>"; //.toUpperCase()
 	if(ply2!=1000)
-		divplycom = divplycom + "<th>"+player_list[ply2].toUpperCase()+"'s Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply2]+"'s Selection</th>"; //.toUpperCase()
 	if(ply3!=1000)
-		divplycom = divplycom + "<th>"+player_list[ply3].toUpperCase()+"'s Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply3]+"'s Selection</th>";// .toUpperCase()
 	divplycom = divplycom + "</tr>";
 	for(i=0;i<matches;i++)
 	{
@@ -162,14 +162,14 @@ function match_info()
 	divmat = divmat +"<tr><th align='left'>Won</th><td align='center'>"+tem_won[teams_list_st.indexOf(team1[p])]+"</td><td align='center'>"+tem_won[teams_list_st.indexOf(team2[p])]+"</td></tr>";
 	divmat = divmat +"<tr><th align='left'>Points</th><td align='center'>"+(tem_won[teams_list_st.indexOf(team1[p])]*2)+"</td><td align='center'>"+(tem_won[teams_list_st.indexOf(team2[p])]*2)+"</td></tr>";
   divmat = divmat +"<tr><th align='left'>Supports</th><td align='center'>"+team1_bets[p]+"</td><td align='center'>"+team2_bets[p]+"</td></tr>";
-	divmat = divmat +"<tr><th align='left'>Supporters</th><td align='center'>";
+	divmat = divmat +"<tr><th align='left'>Supporters</th><td align='left'>";
 	for(i=0;i<players;i++)
 		if(picks[i].pick[p] == team1[p])
-			divmat = divmat + player_list[i].toUpperCase()+ "<br>";
-	divmat = divmat + "</td><td align='center'>";
+			divmat = divmat + "&nbsp&nbsp" + player_list[i]+ "<br>";//.toUpperCase()
+	divmat = divmat + "</td><td align='left'>";
 	for(i=0;i<players;i++)
 		if(picks[i].pick[p] == team2[p])
-			divmat = divmat + player_list[i].toUpperCase()+ "<br>";
+			divmat = divmat + "&nbsp&nbsp" + player_list[i]+ "<br>";//.toUpperCase()
 	divmat = divmat +"</td></tr>";
 	divmat = divmat +"</table>";
 	document.getElementById('mat_table').innerHTML= divmat;
@@ -268,7 +268,7 @@ function player_stats()
 			divp = divp + "<tr bgcolor='#D8D8D8'>";
 		else
 			divp = divp + "<tr bgcolor='#F8F8F8'>";
-		divp = divp +"<th align='center'>"+teams_list[j]+"</th>";
+		divp = divp +"<th align='left'>"+teams_list[j]+"</th>";
 		divp = divp + "<td align='center'>"+supps[j].supp[0] +"</td>";
 		if(r2_end > r1_end)
 			divp = divp + "<td align='center'>"+supps[j].supp[1] +"</td>";
@@ -311,11 +311,11 @@ function semi_info()
 	divplycom="";
 	divplycom = divplycom+"<table border ='1' align='center'><tr bgcolor='00FFE0'><th>Position</th><th>Teams</th>";
 	if(ply1!=100)
-		divplycom = divplycom + "<th>"+player_list[ply1].toUpperCase()+" Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply1]+" Selection</th>"; //.toUpperCase()
 	if(ply2!=100)
-		divplycom = divplycom + "<th>"+player_list[ply2].toUpperCase()+" Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply2]+" Selection</th>"; //.toUpperCase()
 	if(ply3!=100)
-		divplycom = divplycom + "<th>"+player_list[ply3].toUpperCase()+" Selection</th>";
+		divplycom = divplycom + "<th>"+player_list[ply3]+" Selection</th>"; //.toUpperCase()
 	divplycom = divplycom + "</tr>";
 	for(i=0;i<4;i++)
 	{
