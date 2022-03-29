@@ -1,0 +1,27 @@
+*{box-sizing: border-box;}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr, td {
+    border-collapse: collapse;
+}
+
+.img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+}
+
+/* Colours */
+.slb-blue,.slb-hover-blue:hover{color:#fff!important;background-color:#003366!important}
+.smith-green,.smith-hover-green:hover{color:#fff!important;background-color:#006e38!important}
