@@ -63,8 +63,7 @@
                     <div id="img_centered_teamA"><img src="csk.png"></div>
                 </div>
                 <div class="centered">
-                    <strong id="img_centered_text">CRICKET CARNIVAL</strong>
-                    <!-- <p style="max-height: 300px;" id="img_centered_text"><strong>CRICKET CARNIVAL</strong></p> -->
+                    <strong>#</strong><strong id="img_centered_text">CRICKET CARNIVAL</strong>
                 </div>
                 <div class="centered-right">
                     <div id="img_centered_teamB"><img src="kkr.png"></div>
@@ -75,14 +74,10 @@
 
         <!-- First Team Row -->
         <div class="w3-row-padding w3-margin-bottom">
-            <!-- <div class="w3-quarter">
-                <canvas id="myChart" style="width:100%;max-width:500px"></canvas>
-            </div> -->
             <div class="w3-quarter">
                 <div id="myPlot_big_pie_1" style="width:100%;max-width:500px"></div>
             </div>
             <div class="w3-quarter">
-                <!-- <div id="myPlot_big_pie_r2" style="width:100%;max-width:500px"></div> -->
                 <div id="choose_round"></div>
                 <br>
                 <div class="w3-half">
@@ -106,7 +101,6 @@
                     <div class="w3-container" id="top_player_ranks"></div>
                 </div>
                 <br>
-                <!-- <div class="w3-quarter" id="myPlot_big_pie_2" style="width:100%;max-width:500px;"></div> -->
             </div>
             <div class="w3-quarter">
                 <div id="myPlot_hor_bar_1" style="width:100%;max-width:500px"></div>
@@ -139,9 +133,7 @@
     </div>
 
     <script>
-        // Get the Sidebar
         var mySidebar = document.getElementById("mySidebar");
-        // Get the DIV with overlay effect
         var overlayBg = document.getElementById("myOverlay");
         // Toggle between showing and hiding the sidebar, and add overlay effect
         function w3_open() {
@@ -174,7 +166,7 @@
 
         var IPLcolorsObj = {CSK:"#FFFF3C", DC:"#00008B", GT:"#4752a1", KKR:"#2E0854", LSG:"#7fd2d8", MI:"#004BA0", PBKS:"#DCDDDF", RCB:"#EC1C24", RR:"#CBA92B", SRH:"#FF822A"};
         var IPLcolorsArr = ["#FFFF3C", "#00008B", "#4752a1", "#2E0854", "#7fd2d8", "#004BA0", "#DCDDDF", "#EC1C24", "#CBA92B", "#FF822A"];
-        var ipl_color_class = ["ipl-csk", "ipl-dc", "ipl-gt", "ipl-kkr", "ipl-lsg", "ipl-mi", "ipl-pbks", "ipl-rcb", "ipl-rr", "ipl-srh"];
+        var IPLcolorClss = ["ipl-csk", "ipl-dc", "ipl-gt", "ipl-kkr", "ipl-lsg", "ipl-mi", "ipl-pbks", "ipl-rcb", "ipl-rr", "ipl-srh"];
 
         // var xArray = [24, 18, 12, 12, 6, 23, 3, 7];
         // var yArray = ["WC", "Electrical", "RP", "M&S", "TechCom", "WPRS", "A2 & CST", "Others"];
@@ -189,22 +181,21 @@
             };
 
             var data = [{
-                labels:xArray, values:yArray, hole: .4, type:"pie",
+                labels:xArray,
+                values:yArray,
+                hole: .4, type:"pie",
                 textinfo: "label+percent",
                 insidetextorientation: "radial"
             }];
+
             Plotly.newPlot(ID, data, layout);
         }
 
         function showHorBarChart(xArray, yArray, ID, chartTile, barColor) {
-            if (!xArray || xArray == null) {
-                xArray = TRound1_count;
-            }
-            if (!yArray || yArray == null) {
-                yArray = TRound1_teams;
-            }
-            if (!chartTile) { chartTile="undefined"; }
-            if (!barColor) { barColor="rgba(255,0,0,0.6)"; }
+            if (!xArray || xArray == null) {xArray = TRound1_count;}
+            if (!yArray || yArray == null) {yArray = TRound1_teams;}
+            if (!chartTile) {chartTile="undefined";}
+            if (!barColor) {barColor="rgba(255,0,0,0.6)";}
             var data = [{
                 x:xArray,
                 y:yArray,
@@ -212,7 +203,6 @@
                 orientation:"h",
                 marker: {color:barColor}
             }];
-
             var layout = {
                 title:chartTile
             };
@@ -221,35 +211,25 @@
         }
 
         function showVerBarChart(xArray, yArray, ID, chartTile, barColor) {
-            if (!xArray || xArray == null) {
-                xArray = TRound1_teams;
-            }
-            if (!yArray || yArray == null) {
-                yArray = TRound1_count;
-            }
-            if (!chartTile) { chartTile="undefined"; }
-            if (!barColor) { barColor="rgba(255,0,0,0.6)"; }
+            if (!xArray || xArray == null) {xArray = TRound1_teams;}
+            if (!yArray || yArray == null) {yArray = TRound1_count;}
+            if (!chartTile) {chartTile="undefined";}
+            if (!barColor) {barColor="rgba(255,0,0,0.6)";}
             var data = [{
                 x:xArray,
                 y:yArray,
                 type:"bar",
                 marker: {color:barColor}
             }];
+            var layout = {
+                title:chartTile
+            };
 
-            var layout = {title:chartTile};
             Plotly.newPlot(ID, data, layout);
         }
 
-        showBigPieChart(TRound1_teams, TRound1_count, "myPlot_big_pie_1", "Team Entries for Round 1", false);
-        // showBigPieChart([team1[0], team2[0]], null, "myPlot_big_pie_2", "Team Percentage");
-
-        showHorBarChart([10, 15, 20, 25, 30, 35, 40, 45], null, "myPlot_hor_bar_1", "Team Entries for CSK", "rgba(255,0,0,0.6)");
-        showHorBarChart([45, 40, 35, 30, 25, 20, 15, 10], null, "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
-        // showVerBarChart("myPlot_ver_bar_1", "Team Entries for Team B");
-
         function calcTeamSupport() {
             var mat1 = [];
-
             for (let i = 0; i < picks.length; i++) {
                 const e = picks[i].pick;
                 mat1[i] = e[i];
@@ -280,8 +260,8 @@
             document.getElementById("img_centered_teamA").innerHTML = "<img src='" + team1[p].toLowerCase() + ".png'>";
             document.getElementById("img_centered_teamB").innerHTML = "<img src='" + team2[p].toLowerCase() + ".png'>";
             
-            document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team1[p])];
-            document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team2[p])];
+            document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + IPLcolorClss[teams_list_st.indexOf(team1[p])];
+            document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + IPLcolorClss[teams_list_st.indexOf(team2[p])];
 
             if (Number(team1_bets[p]) > Number(team2_bets[p])) {
                 document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team1[p])] + ";");
@@ -289,8 +269,11 @@
                 document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team2[p])] + ";");
             }
 
-            showHorBarChart([17, 8, 12, 12, 6, 18, 2, 7], null, "myPlot_hor_bar_1", "Team Entries for " + team1[p], "rgba(255,0,0,0.6)");
-            showHorBarChart([7, 2, 2, 5, 0, 5, 1, 0], null, "myPlot_hor_bar_2", "Team Entries for " + team2[p], "rgba(0, 102, 255, 0.6)");
+            showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Team Entries for " + team1[p], "rgba(255,0,0,0.6)");
+            showHorBarChart([7, 2, 2, 5, 0], null, "myPlot_hor_bar_2", "Team Entries for " + team2[p], "rgba(0, 102, 255, 0.6)");
+
+            // showVerBarChart(null, [17, 8, 12, 12, 6, 18, 2, 7], "myPlot_hor_bar_1", "Team Entries for CSK", "rgba(255,0,0,0.6)");
+            // showVerBarChart(null, [7, 2, 2, 5, 0, 5, 1, 0], "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
         };
 
         /*=================================*\
@@ -324,6 +307,10 @@
         divran = divran +"</table>";
         document.getElementById('top_player_ranks').innerHTML= divran;
 
+        /*=============================*\
+                Home Load Operation
+        \*=============================*/
+        showBigPieChart(TRound1_teams, TRound1_count, "myPlot_big_pie_1", "Team Entries for Round 1", false);
         update_match_info();
     </script>
 
