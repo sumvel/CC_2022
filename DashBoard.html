@@ -283,7 +283,11 @@
             document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team1[p])];
             document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team2[p])];
 
-            document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team1[p])] + ";");
+            if (Number(team1_bets[p]) > Number(team2_bets[p])) {
+                document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team1[p])] + ";");
+            } else {
+                document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team2[p])] + ";");
+            }
 
             showHorBarChart([17, 8, 12, 12, 6, 18, 2, 7], null, "myPlot_hor_bar_1", "Team Entries for " + team1[p], "rgba(255,0,0,0.6)");
             showHorBarChart([7, 2, 2, 5, 0, 5, 1, 0], null, "myPlot_hor_bar_2", "Team Entries for " + team2[p], "rgba(0, 102, 255, 0.6)");
