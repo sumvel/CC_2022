@@ -162,14 +162,14 @@ function match_info()
 	divmat = divmat +"<tr><th align='left'>Won</th><td align='center'>"+tem_won[teams_list_st.indexOf(team1[p])]+"</td><td align='center'>"+tem_won[teams_list_st.indexOf(team2[p])]+"</td></tr>";
 	divmat = divmat +"<tr><th align='left'>Points</th><td align='center'>"+(tem_won[teams_list_st.indexOf(team1[p])]*2)+"</td><td align='center'>"+(tem_won[teams_list_st.indexOf(team2[p])]*2)+"</td></tr>";
   divmat = divmat +"<tr><th align='left'>Supports</th><td align='center'>"+team1_bets[p]+"</td><td align='center'>"+team2_bets[p]+"</td></tr>";
-	divmat = divmat +"<tr><th align='left'>Supporters</th><td align='center'>";
+	divmat = divmat +"<tr><th align='left'>Supporters</th><td align='left'>";
 	for(i=0;i<players;i++)
 		if(picks[i].pick[p] == team1[p])
-			divmat = divmat + player_list[i]+ "<br>";//.toUpperCase()
-	divmat = divmat + "</td><td align='center'>";
+			divmat = divmat + "&nbsp&nbsp" + player_list[i]+ "<br>";//.toUpperCase()
+	divmat = divmat + "</td><td align='left'>";
 	for(i=0;i<players;i++)
 		if(picks[i].pick[p] == team2[p])
-			divmat = divmat + player_list[i]+ "<br>";//.toUpperCase()
+			divmat = divmat + "&nbsp&nbsp" + player_list[i]+ "<br>";//.toUpperCase()
 	divmat = divmat +"</td></tr>";
 	divmat = divmat +"</table>";
 	document.getElementById('mat_table').innerHTML= divmat;
@@ -268,7 +268,7 @@ function player_stats()
 			divp = divp + "<tr bgcolor='#D8D8D8'>";
 		else
 			divp = divp + "<tr bgcolor='#F8F8F8'>";
-		divp = divp +"<th align='center'>"+teams_list[j]+"</th>";
+		divp = divp +"<th align='left'>"+teams_list[j]+"</th>";
 		divp = divp + "<td align='center'>"+supps[j].supp[0] +"</td>";
 		if(r2_end > r1_end)
 			divp = divp + "<td align='center'>"+supps[j].supp[1] +"</td>";
