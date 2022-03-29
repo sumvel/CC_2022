@@ -20,7 +20,7 @@
     <div class="w3-bar w3-top slb-blue w3-large" style="z-index:4">
         <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>&nbsp;Menu</button>
         <span class="w3-bar-item w3-left">IPL 2022</span>
-        <span class="w3-bar-item w3-right">Cricket Carnival</span>
+        <span class="w3-bar-item w3-right">Cricket Carnival 2022</span>
     </div>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
@@ -59,7 +59,16 @@
         <header class="w3-container" style="padding-top:22px">
             <div class="img-container">
                 <img class="w3-image" src="./stadium_wide.png" alt="London" style="width:100%;min-height:200px;max-height:300px;">
-                <div class="centered"><p>CRICKET CARNIVAL</p></div>
+                <div class="centered-left">
+                    <div id="img_centered_teamA"><img src="csk.png"></div>
+                </div>
+                <div class="centered">
+                    <strong id="img_centered_text">CRICKET CARNIVAL</strong>
+                    <!-- <p style="max-height: 300px;" id="img_centered_text"><strong>CRICKET CARNIVAL</strong></p> -->
+                </div>
+                <div class="centered-right">
+                    <div id="img_centered_teamB"><img src="kkr.png"></div>
+                </div>
             </div>
             <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
         </header>
@@ -163,7 +172,8 @@
         var TRound3_count = [0, 0, 0, 0, 0]; //not yet released
         var TRound4_count = [0, 0, 0, 0, 0]; //not yet released
 
-        var IPLcolors = {CSK:"FFFF3C", DC:"00008B", PK:"DCDDDF", KKR:"2E0854", MI:"004BA0", RR:"CBA92B", RCB:"EC1C24", SH:"FF822A", LSG:"7fd2d8", GT:"4752a1"};
+        var IPLcolorsObj = {CSK:"#FFFF3C", DC:"#00008B", GT:"#4752a1", KKR:"#2E0854", LSG:"#7fd2d8", MI:"#004BA0", PBKS:"#DCDDDF", RCB:"#EC1C24", RR:"#CBA92B", SRH:"#FF822A"};
+        var IPLcolorsArr = ["#FFFF3C", "#00008B", "#4752a1", "#2E0854", "#7fd2d8", "#004BA0", "#DCDDDF", "#EC1C24", "#CBA92B", "#FF822A"];
         var ipl_color_class = ["ipl-csk", "ipl-dc", "ipl-gt", "ipl-kkr", "ipl-lsg", "ipl-mi", "ipl-pbks", "ipl-rcb", "ipl-rr", "ipl-srh"];
 
         // var xArray = [24, 18, 12, 12, 6, 23, 3, 7];
@@ -266,9 +276,14 @@
 
             document.getElementById("choose_teamA_count").innerHTML = team1_bets[p];
             document.getElementById("choose_teamB_count").innerHTML = team2_bets[p];
+
+            document.getElementById("img_centered_teamA").innerHTML = "<img src='" + team1[p].toLowerCase() + ".png'>";
+            document.getElementById("img_centered_teamB").innerHTML = "<img src='" + team2[p].toLowerCase() + ".png'>";
             
             document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team1[p])];
             document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team2[p])];
+
+            document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team1[p])] + ";");
 
             showHorBarChart([17, 8, 12, 12, 6, 18, 2, 7], null, "myPlot_hor_bar_1", "Team Entries for " + team1[p], "rgba(255,0,0,0.6)");
             showHorBarChart([7, 2, 2, 5, 0, 5, 1, 0], null, "myPlot_hor_bar_2", "Team Entries for " + team2[p], "rgba(0, 102, 255, 0.6)");

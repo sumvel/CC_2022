@@ -1,4 +1,5 @@
 *{box-sizing: border-box;}
+
 table{
     border-collapse: collapse;
     width: 100%;
@@ -11,15 +12,28 @@ tr, td {
 .img-container {
     position: relative;
     text-align: center;
-    color: white;
+    color: #ffffff;
 }
 
 .centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6rem;
+    max-height: 300px;
+}
+
+.centered-left {
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+}
+
+.centered-right {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
 }
 
 /* Colours */
