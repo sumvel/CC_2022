@@ -1,6 +1,9 @@
 <HTML>
   <HEAD>
     <TITLE>Cricket Carnival 2022</TITLE>
+		<link rel="stylesheet" href="./default.css">
+		<link rel="stylesheet" href="./w3.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </HEAD>
   <SCRIPT language = "JavaScript">
 		
@@ -9,17 +12,35 @@
 	<script src="./other_functions.js"></script>
 	<script src="./data_processing.js"></script>
 	<BODY>
-		<table  align= "center" border="1" width=750>
-			<tr><td align='center'><table><tr>
+		<table  align= "center" border="1" >
+			<tr><td align='center'>
+				
+				<!-- <table><tr>
 				<td><input type=button value="Home" name="home" onclick="home_button()"></td>
 				<td><input type=button value="Schedule" name="schedule" onclick="schedule_button()"></td>
-				<td><input type=button value="Results" name="results" onclick="results_button()"></td><!---->
+				<td><input type=button value="Results" name="results" onclick="results_button()"></td>
 				<td><input type=button value="Compare" name="compare" onclick="compare_button()"></td>
 				<td><input type=button value="IPL Team Stats" name="tstats" onclick="tstats_button()"></td>
 				<td><input type=button value="Player Stats" name="pstats" onclick="pstats_button()"></td>
 				<td><input type=button value="Predictions" name="predtab" onclick="prediction_button()"></td>
-				<!--<td><input type=button value="Semifinals/Finals" name="sftab" onclick="Semi_Final_button()"></td>-->
-				</tr></table></td>
+				<td><input type=button value="Semifinals/Finals" name="sftab" onclick="Semi_Final_button()"></td><!-- ->
+				</tr></table> -->
+				<div class="w3-topbar">
+					<div class="w3-bar w3-theme-d2 w3-left-align">
+						<!-- <a class="w3-bar-item w3-button w3-teal" href="MainBoard.html"><i class="fa fa-home w3-margin-right"></i>Home</a> 
+						<a class="w3-bar-item w3-button w3-teal" onclick="home_button()" href="#"><i
+								class="fa fa-refresh w3-margin-right"></i>Reset</a>-->
+						<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="home_button()" href="#">Home</a>
+						<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="schedule_button()" href="#">Schedule</a>
+						<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="results_button()" href="#">Results</a>				
+						<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="compare_button()" href="#">Compare</a>
+						<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="tstats_button()" href="#">IPL Team Stats</a>
+						<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="pstats_button()" href="#">Player Stats</a>
+						<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="prediction_button()" href="#">Predictions</a>
+						<!--<a class="w3-bar-item w3-button w3-hover-dark-gray" onclick="Semi_Final_button()" href="#">Semifinals/Finals</a> -->
+					</div>
+				</div>
+			</td>
 			</tr>
 			<tr><td align ='left'><table><tr><td align ='center' valign='top'>
 				<!-- ranks table-->	
@@ -213,7 +234,7 @@
 			divsas = divsas + "<tr bgcolor='#D8D8D8'>";
 		else
 			divsas = divsas + "<tr bgcolor='#F8F8F8'>";
-		divsas = divsas + "<td align='center'>"+ new_teams_list[i] + "</td><td align='center'>";
+		divsas = divsas + "<td align='left'>"+ new_teams_list[i] + "</td><td align='center'>";
 		for(j=0;j<teams;j++)
 			if(new_teams_list[i] == teams_list[j])
 				divsas = divsas + tem_play[j] +"</td><td align='center'>" + tem_won1[j] +"</td><td align='center'>" + (tem_play[j] - tem_won1[j]) +"</td><td align='center'>" + tem_pts[i] +"</td></tr>";
@@ -233,7 +254,7 @@
 			divsas = divsas + "<tr bgcolor='#D8D8D8'>";
 		else
 			divsas = divsas + "<tr bgcolor='#F8F8F8'>";
-		divsas = divsas + "<td align='center'>"+ new_teams_list1[i] + "</td><td align='center'>";
+		divsas = divsas + "<td align='left'>"+ new_teams_list1[i] + "</td><td align='center'>";
 		for(j=0;j<teams;j++)
 			if(new_teams_list1[i] == teams_list[j])
 			{
