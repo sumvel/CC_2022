@@ -93,7 +93,7 @@
                         <div id="choose_teamB">TEAM B</div>
                     </div>
                 </div>
-                <div class="w3-row-padding w3-margin-bottom">
+                <div class="w3-row-padding w3-margin-bottom" style="height:300px;overflow: auto;">
                     <h5>Individual Top Rankings</h5>
                     <div class="w3-container" id="top_player_ranks"></div>
                 </div>
@@ -153,6 +153,7 @@
         }
 
         // var steam_st = new Array("WPRS", "WEC", "Elec", "RP", "RoS");
+        // var teams_list_st = new Array("CSK", "DC", "GT", "KKR", "LSG", "MI", "PBKS", "RCB", "RR", "SRH");
 
         var TRound1_teams = steam_st; // ["WC", "Electrical", "RP", "M&S", "TechCom", "WPRS", "A2 & CST", "Others"];
         var TRound2_teams = steam_st; // not yet released
@@ -249,6 +250,9 @@
         }
 
         function update_match_info(){
+            /*===========================*\
+                Home Default values
+            \*===========================*/
             var matid = document.getElementById("choose_match_id");
             if (matid.options[matid.selectedIndex].value == "default") {
                 p = match_result.length;
@@ -258,58 +262,17 @@
                 var matnum = matid.options[matid.selectedIndex].value;
                 p = parseInt(matnum) - 1;
             }
-            var e = document.getElementById("choose_match_id");
-            var selectedMatch = e.options[e.selectedIndex].text;
-            var TEAMA_vs_TEAMB = selectedMatch.split(":").pop().trim().split(" vs ");
-            console.log("TEAMA_vs_TEAMB: " + TEAMA_vs_TEAMB);
-            console.log(selectedMatch);
-
-            // var team1 = new Array("CSK", "DC", "PBKS", "GT", "SRH", "RCB", "LSG", "PBKS", "MI", "GT", "CSK", "SRH", "RR", "KKR", "LSG");
-            // var team2 = new Array("KKR", "MI", "RCB", "LSG", "RR", "KKR", "CSK", "KKR", "RR", "DC", "PBKS", "LSG", "RCB", "MI", "DC");
-            // var ipl_color_class = ["ipl-csk", "ipl-dc", "ipl-gt", "ipl-kkr", "ipl-lsg", "ipl-mi", "ipl-pbks", "ipl-rcb", "ipl-rr", "ipl-srh"];
-
-            const teamA_color = [];
-            const teamB_color = [];
-
-            for (let j = 0; j < team1.length; j++) {
-                const a = selectedMatch.toLowerCase().split(" vs ");
-                const b = team1[j].toLowerCase();
-                const c = team2[j].toLowerCase();
-
-                if (a[0].includes(b)) {
-                    for (let k = 0; k < ipl_color_class.length; k++) {
-                        const d = ipl_color_class[k];
-                        if (d.includes(b)) {
-                            teamA_color.push(d);
-                        }
-                    }
-                }
-
-                if (a[1].includes(c)) {
-                    for (let k = 0; k < ipl_color_class.length; k++) {
-                        const d = ipl_color_class[k];
-                        if (d.includes(c)) {
-                            teamB_color.push(d);
-                        }
-                    }
-                }
-            }
-
-            console.log("Team A color: " + teamA_color);
-            console.log("Team B color: " + teamB_color);
-
-            document.getElementById("choose_teamA").innerHTML = TEAMA_vs_TEAMB[0];
-            document.getElementById("choose_teamB").innerHTML = TEAMA_vs_TEAMB[1];
+            document.getElementById("choose_teamA").innerHTML = teams_list_st[teams_list_st.indexOf(team1[p])];
+            document.getElementById("choose_teamB").innerHTML = teams_list_st[teams_list_st.indexOf(team2[p])];
 
             document.getElementById("choose_teamA_count").innerHTML = team1_bets[p];
             document.getElementById("choose_teamB_count").innerHTML = team2_bets[p];
+            
+            document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team1[p])];
+            document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + ipl_color_class[teams_list_st.indexOf(team2[p])];
 
-            document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + teamA_color[0];
-            document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + teamB_color[0];
-
-            showHorBarChart([17, 8, 12, 12, 6, 18, 2, 7], null, "myPlot_hor_bar_1", "Team Entries for " + TEAMA_vs_TEAMB[0], "rgba(255,0,0,0.6)");
-            showHorBarChart([7, 2, 2, 5, 0, 5, 1, 0], null, "myPlot_hor_bar_2", "Team Entries for " + TEAMA_vs_TEAMB[1], "rgba(0, 102, 255, 0.6)");
-            calcTeamSupport();
+            showHorBarChart([17, 8, 12, 12, 6, 18, 2, 7], null, "myPlot_hor_bar_1", "Team Entries for " + team1[p], "rgba(255,0,0,0.6)");
+            showHorBarChart([7, 2, 2, 5, 0, 5, 1, 0], null, "myPlot_hor_bar_2", "Team Entries for " + team2[p], "rgba(0, 102, 255, 0.6)");
         };
 
         /*=================================*\
@@ -327,7 +290,7 @@
                 Home Top Ranks
         \*=======================*/
         divran ="<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr bgcolor='00FFE0'><th align='center'>&nbsp;</th><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
-        for(j=0; j<5 ;j++) {
+        for(j=0; j<10 ;j++) {
             if(j%2 != 0)
                 divran = divran + "<tr bgcolor='#D8D8D8'>";
             else
@@ -342,6 +305,8 @@
         }
         divran = divran +"</table>";
         document.getElementById('top_player_ranks').innerHTML= divran;
+
+        update_match_info();
     </script>
 
 </body>
