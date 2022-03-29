@@ -78,7 +78,6 @@ for(j=0;j<players;j++)
 		if(player_list[j] == player_list_ranks[k])
 			player_ranks[j] = player_ranks_ranks[k];
 
-
 for(i=0;i<teams;i++)
 {
 	tem_play[i] = 0;
@@ -132,3 +131,4 @@ for (i = 0; i < players; i++) {
 }
 sort_value(list_prad1, 0, players - 1, score_prad1);
 sort_value(list_prad2, 0, players - 1, score_prad2);
+
