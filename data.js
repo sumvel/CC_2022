@@ -2,7 +2,8 @@ var r1_end = 15;
 var r2_end = 15;//30;
 var r3_end = 15;//70;
 var r3_exists = false;
-var match_result = new Array("KKR", "DC", "PBKS", "GT", "RR", "RCB");
+var match_result = new Array("KKR", "DC", "PBKS", "GT", "RR", "RCB", "LSG");
+var mat_per_week = new Array(7,15,24,33,41,50,59,67,69);
 //match_result[0] = "KKR";
 //match_result[1] = "DC";
 var semi_result = new Array();
@@ -27,6 +28,8 @@ var teams = teams_list_st.length;
 
 var steam = new Array("Well Production Services", "Well Construction", "Electrical", "Reservoir Performance", "Rest of STSI");
 var steam_st = new Array("WPRS", "WEC", "Electrical", "RP", "Rest of STSI");
+var steam_short = new Array("WPRS", "WEC", "Elec", "RP", "RoS");
+var steam_part = new Array(0,0,0,0,0);
 var steam_cnt = steam.length;
 var player_list = new Array("Abhijeet V S", "Abhijit A S", "Abhinay K", "Aditya J", "Aditya S", "Akansha Y", "Akash B", "Akash K", "Akshay J", "Akshay Satpute", "Akshay Shete", "Aliasgar S C", "Aman A", "Amit K D", "Amol M", "Anil K S", "AnilKumar H", "Aniruddha V", "Anita Y D", "Annpurna T", "Anuj K", "Anuja S", "Ashwath A P", "Aslam S", "Bhagwat J G", "Bhairavkumar K T", "Bhargavi J", "Bhavesh J", "Bineesh P", "Chetan S", "Chetanya D B", "Chintan S", "Damodar A", "Deepak D", "Devendra K", "Dhananjaya K", "Dharmendra Y", "Digambar P", "Dileep K V", "Dinesh K", "Dipika D", "Farshad O", "Gagandeep S", "Ganesh L", "Gauri J", "Gayatri A Z", "Hari R", "Harish K L", "Jerosh J", "Jijabhau S", "Jitendra K A", "Joy B", "Jyoti S D", "Kailasa M D", "Kapil T", "Karan D", "Keyour W", "Kiran A P", "Kiran P", "Kiran S", "Kirti A M", "Kungiveethil C V", "Lokendra C", "Lokesh S", "Mahejabeen B", "Manjunath K G", "Manoj B T", "Manoj B", "Manoranjan J", "Mantaj S", "Mayur S S", "Missula R R", "Neelamjyoti L", "Neha P", "Nitesh G", "Nitish P", "Omprakash U", "Onkar V M", "Palash D", "Pankaj C", "Piyush P K", "Prakash K", "Prasad R P", "Prashant S", "Pravinkumar ", "Puja A D", "Puja D S", "Punit K R", "Punith G", "Purshottam S", "Rahul P", "Raj N S", "Rajasekar M", "Rani B P", "Rani K U S", "Ranjit S", "Ravi S A", "Ravikant K", "Ravindra B", "Ravindra P", "Reehas R", "Rejeesh H", "Renjith C S", "Revati M", "Rijumoni D", "Rohan K", "Rucha D", "Ruchir S", "Sachin T P", "Sajith U", "Saket P", "Samruddhi P V", "Sandeep S", "Sanjeev V", "Sanjeevkumar M", "Sanket G", "Santhan K", "Santosh G", "Santosh P", "Sashank V", "Satish P", "Sayan B", "Senthil K K", "Shashank P", "Shekhar S", "Shikha C", "Shivam A", "Shivam V", "Shourabh A", "Shriganesh M", "Shrishail D", "Shubham A T", "Shubham G", "Subhasis M", "Sudarshan T", "Sudhakar S", "Sujit P", "Suman V", "Sumati ", "Sunil K", "Suraj B", "Tushar S", "Vaibhav M", "Vanita R S", "Vidya T", "Vignesh J", "Vijay K", "Vikram M", "Vinod C", "Vipul K P", "Vishal K", "Vishnu K R", "Yogesh J");
 var players = player_list.length;
@@ -215,19 +218,30 @@ picks[152].pick = new Array("CSK", "DC", "RCB", "LSG", "RR", "KKR", "LSG", "KKR"
 
 var past_score = new Array();
 var past_rank = new Array();
+var past_Dscore = new Array();
+var past_Drank = new Array();
 for(m=0;m<matches;m++)
 {
 	past_score[m] = new Object();
 	past_rank[m] = new Object();
+	past_Dscore[m] = new Object();
+	past_Drank[m] = new Object();
 }
 for(m=0;m<matches;m++)
 {
 	past_score[m].val = new Array();
 	past_rank[m].val = new Array();
+	past_Dscore[m].val = new Array();
+	past_Drank[m].val = new Array();
 	for(n=0;n<players;n++)
 	{
 		past_score[m].val[n] = 0;
 		past_rank[m].val[n] = 0;
+	}
+	for(n=0;n<steam_cnt;n++)
+	{
+		past_Dscore[m].val[n] = 0;
+		past_Drank[m].val[n] = 0;
 	}
 }
 for(i=0;i<matches;i++)

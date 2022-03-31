@@ -132,3 +132,8 @@ for (i = 0; i < players; i++) {
 sort_value(list_prad1, 0, players - 1, score_prad1);
 sort_value(list_prad2, 0, players - 1, score_prad2);
 
+
+for (i=0;i<steam_cnt;i++)
+	for(j=0;j<players;j++)
+		if(player_steam_list[j] == steam_short[i])
+			steam_part[i]++;
