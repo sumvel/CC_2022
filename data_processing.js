@@ -134,6 +134,28 @@ sort_value(list_prad2, 0, players - 1, score_prad2);
 
 
 for (i=0;i<steam_cnt;i++)
+{
+	temp_score = 0;
 	for(j=0;j<players;j++)
 		if(player_steam_list[j] == steam_short[i])
+		{
 			steam_part[i]++;
+			temp_score = temp_score + player_score[j];
+		}
+	steam_avg[i] = Math.round((temp_score / steam_part[i]) * 100 )/100 ;
+	steam_list_ranks[i] = steam_short[i];
+	steam_score_ranks[i] = steam_avg[i];
+	steam_ranks_ranks[i] = 0;
+	//	player_ranks[j] = 0;
+}
+ sort_value(steam_list_ranks, 0, steam_cnt-1, steam_score_ranks);
+	for(j=0;j<steam_cnt;j++)
+	{
+		if(j!=0 && steam_score_ranks[j] == steam_score_ranks[j-1])
+			steam_ranks_ranks[j] = steam_ranks_ranks[j-1];
+		else
+			steam_ranks_ranks[j] = j+1;
+	}
+
+//alert(steam_avg + " " + steam_short);
+//alert(steam_list_ranks + " " + steam_score_ranks + " " + steam_ranks_ranks);
