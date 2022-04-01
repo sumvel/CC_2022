@@ -10,6 +10,37 @@ function sel_team()
 				tabid.rows[j].style.display = 'none';
 }
 
+function sel_steam()
+{
+	divran = "";
+	var boxid = document.getElementById('sel_steam');
+	divran = divran + "<table border='0' cellspacing='2'><tr bgcolor='00FFE0'><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
+	p=1;
+	prev_ply_rank = 1;
+	for(j=0;j<players;j++)
+	{
+		
+		if(boxid.options[boxid.selectedIndex].value =="ALL" || boxid.options[boxid.selectedIndex].value == player_steam_list[player_list.indexOf(player_list_ranks[j])])
+		{
+			if(p%2 != 0)
+				divran = divran + "<tr bgcolor='#D8D8D8'>";
+			else
+				divran = divran + "<tr bgcolor='#F8F8F8'>";
+			divran = divran + "<td align ='center'>";
+			if(p!=0 && player_score_ranks[j] == prev_ply_rank)
+				divran = divran +"&nbsp";
+			else
+				divran = divran + p;//player_ranks_ranks[j];
+		
+			divran = divran + "</td><td>" + player_list_ranks[j]+"</td><td align='center'>"+player_score_ranks[j] +"</td></tr>";  // .toUpperCase() 
+			p++;
+			prev_ply_rank = player_score_ranks[j];
+		}
+	}
+	divran = divran +"</table>";
+	document.getElementById('ranks_tab_div').innerHTML= divran;
+}
+
 /*function res_team()
 {
 	var tabid = document.getElementById("tab_res");

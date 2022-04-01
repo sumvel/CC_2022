@@ -75,7 +75,7 @@
 	/*=======================*\
 			Ranks
 	\*=======================*/
-	divran ="<table border='0' cellspacing='2'><tr bgcolor='00FFE0'><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
+	/*divran ="<table border='0' cellspacing='2'><tr bgcolor='00FFE0'><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
 	for(j=0;j<players;j++)
 	{
 		if(j%2 != 0)
@@ -91,8 +91,15 @@
 		divran = divran + "</td><td>" + player_list_ranks[j]+"</td><td align='center'>"+player_score_ranks[j] +"</td></tr>";  // .toUpperCase() 
 	}
 	divran = divran +"</table>";
+	document.getElementById('ranks').innerHTML= divran;*/
+
+	divran = "";
+	divran = "<select id = 'sel_steam' size ='1' onchange = 'sel_steam()'><option value='ALL'>SHOW ALL GROUPS</option>";
+	for (i=0; i<steam_cnt; i++)
+		divran = divran + "<option value='" + steam_short[i] + "'>" + steam[i] + "</option>";
+	divran = divran + "</select><div id='ranks_tab_div'></div>";
 	document.getElementById('ranks').innerHTML= divran;
-	
+	sel_steam();
 
 
 	/*=======================*\
@@ -338,7 +345,7 @@
 			Home
 	\*=======================*/
 	divhome = "<table><tr align='center' valign='top'><td valign='top'><select id = 'match_id' size ='1' onchange = 'match_info()'>";
-	divhome = divhome +"<option value='default'>&nbsp</option>";
+	divhome = divhome +"<option value='default'>Select a match</option>";
 	for(i=0;i<matches;i++)
 		divhome = divhome +"<option value='" + (i+1) + "'>Match " + (i+1) + "</option>";
 	divhome = divhome +"</select></td></tr><tr><td><div id='mat_table'></div></td></tr></table>";
