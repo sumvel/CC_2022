@@ -26,9 +26,9 @@ var teams = teams_list_st.length;
 		11 - Not started
 		12 - Abandoned*/
 
-var steam = new Array("Well Production Services", "Well Construction", "Electrical", "Reservoir Performance", "Rest of STSI");
-var steam_st = new Array("WPRS", "WEC", "Electrical", "RP", "Rest of STSI");
-var steam_short = new Array("WPRS", "WEC", "Elec", "RP", "RoS");
+var steam = new Array("Electrical", "Reservoir Performance", "Well Construction", "Well Production Services", "Rest of STSI");
+var steam_st = new Array("Electrical", "RP", "WEC", "WPRS", "Rest of STSI");
+var steam_short = new Array("Elec", "RP", "WEC", "WPRS", "RoS");
 var steam_part = new Array(0,0,0,0,0);
 var steam_avg = new Array(0.0,0.0,0.0,0.0,0.0);
 var steam_cnt = steam.length;
