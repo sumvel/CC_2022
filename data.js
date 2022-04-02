@@ -249,20 +249,36 @@ for(m=0;m<matches;m++)
 		past_Drank[m].val[n] = 0;
 	}
 }
+var team1_steam_supp = new Array();
+var team2_steam_supp = new Array();
 for(i=0;i<matches;i++)
 {
-	//alert(i);
+	team1_steam_supp[i] = new Object();
+	team2_steam_supp[i] = new Object();
+	team1_steam_supp[i].steam = new Array();
+	team2_steam_supp[i].steam = new Array();
+	for (k=0;k<steam_cnt;k++)
+	{
+		team1_steam_supp[i].steam[k] = 0;
+		team2_steam_supp[i].steam[k] = 0;
+	}
+	//alert(team1_steam_supp[i].steam[k]);
 	team1_bets[i] = 0;
 	team2_bets[i] = 0;
 	for(j=0;j<players;j++)
 	{
-		if(picks[j].pick[i]==team1[i])
+		if (picks[j].pick[i] == team1[i]) {
 			team1_bets[i]++;
-		else if (picks[j].pick[i]==team2[i])
+			team1_steam_supp[i].steam[steam_short.indexOf(player_steam_list[j])]++;
+		}
+		else if (picks[j].pick[i] == team2[i]) {
 			team2_bets[i]++;
+			team2_steam_supp[i].steam[steam_short.indexOf(player_steam_list[j])]++;
+		}
 	}
 }
-
+//alert(team1_steam_supp[8].steam);
+//alert(team2_steam_supp[8].steam);
 	var tem_play = new Array();
 	var tem_won = new Array();
 	var tem_won1 = new Array();
@@ -273,3 +289,6 @@ for(i=0;i<matches;i++)
 	var supps = new Array();
 	var new_teams_list = new Array();
 	var new_teams_list1 = new Array();
+
+	
+
