@@ -77,14 +77,14 @@
                 <h5>Individual Rankings</h5>
             </div>
             <div class="w3-quarter">
-                <h5>Team Rankings</h5>
+                <h5>Group Rankings</h5>
             </div>
             <!-- Rankings and vote count -->
-            <div class="w3-quarter" id="choose_round"></div>
-            <!-- Team A bar chart -->
-            <div class="w3-quarter">&nbsp;
-                <!-- <div id="myPlot_hor_bar_1" style="width:100%;max-width:500px"></div> -->
+            <div class="w3-quarter">
+                <h5>Vote Share</h5>
             </div>
+            <!-- Team A bar chart -->
+            <div class="w3-quarter" id="choose_round"></div>
         </div>
 
         <!-- First Team Row -->
@@ -123,8 +123,8 @@
 
             <!-- Team A bar chart -->
             <div class="w3-quarter">
-                Hellow World
-                <!-- <div id="choose_pie_chart" style="width:100%;max-width:500px;height:450px;overflow: auto;"></div> -->
+                <!-- <div id="myPlot_Pie_1" style="width:100%;max-width:500px;"></div> -->
+                <div id="myPlot_bar_1" style="width:100%;max-width:500px;"></div>
             </div>
         </div>
         
@@ -132,7 +132,7 @@
         <div class="w3-row-padding w3-margin-bottom">
             <!-- Pie chart -->
             <div class="w3-half">
-                <div id="myPlot_big_pie_1" style="width:100%;max-width:500px"></div>
+                <div id="myPlot_Donut_1" style="width:100%;max-width:500px"></div>
             </div>
             <!-- Team A bar chart -->
             <div class="w3-quarter">
@@ -188,12 +188,12 @@
         // var steam_st = new Array("WPRS", "WEC", "Elec", "RP", "RoS");
         // var teams_list_st = new Array("CSK", "DC", "GT", "KKR", "LSG", "MI", "PBKS", "RCB", "RR", "SRH");
 
-        var TRound1_teams = steam_st; // ["WC", "Electrical", "RP", "M&S", "TechCom", "WPRS", "A2 & CST", "Others"];
+        var TRound1_teams = steam_st; // ["Electrical", "RP", "WEC", "WPRS", "Rest of STSI"];
         var TRound2_teams = steam_st; // not yet released
         var TRound3_teams = steam_st; // not yet released
         var TRound4_teams = steam_st; // not yet released
         
-        var TRound1_count = [35, 33, 30, 27, 28] //[24, 18, 12, 12, 6, 23, 3, 7];
+        var TRound1_count = [30, 27, 33, 35, 28] // Manually update for first round;
         var TRound2_count = [34, 28, 25, 30, 24]; //not yet released
         var TRound3_count = [0, 0, 0, 0, 0]; //not yet released
         var TRound4_count = [0, 0, 0, 0, 0]; //not yet released
@@ -203,8 +203,8 @@
         var IPLcolorClss = ["ipl-csk", "ipl-dc", "ipl-gt", "ipl-kkr", "ipl-lsg", "ipl-mi", "ipl-pbks", "ipl-rcb", "ipl-rr", "ipl-srh"];
 
         // var xArray = [24, 18, 12, 12, 6, 23, 3, 7];
-        // var yArray = ["WC", "Electrical", "RP", "M&S", "TechCom", "WPRS", "A2 & CST", "Others"];
-        function showBigPieChart(xArray, yArray, ID, chartTile, chartLegend, chartHeight, chartColors /* array eg. [red, blue]*/) {
+        // var yArray = ["Electrical", "RP", "WEC", "WPRS", "Rest of STSI"];
+        function showPieChart(xArray, yArray, ID, chartTile, chartLegend, chartHeight, chartColors /* array eg. [red, blue]*/) {
             if (!chartLegend || chartLegend == null) {chartLegend = false;}
             var data = [{
                 labels:xArray,
@@ -267,8 +267,45 @@
                     }],
                 height: 450,
                 width: 775,
-                showlegend: false,
+                showlegend: chartLegend,
                 grid: {rows: 1, columns: 2}
+            };
+
+            Plotly.newPlot(ID, data, layout);
+        }
+
+        function showVerDblBarChart(x1, y1, x2, y2, ID, chartTile, chartLegend, trace1Color, trace2Color) {
+            var trace1 = {
+            x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
+            y: [17, 8, 12, 12, 6],
+            type: 'bar',
+            name: 'Primary Product',
+            marker: {
+                color: trace1Color,
+                opacity: 0.7,
+            }
+            };
+
+            var trace2 = {
+            x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
+            y: [7, 2, 2, 5, 6],
+            type: 'bar',
+            name: 'Secondary Product',
+            marker: {
+                color: trace2Color,
+                opacity: 0.7
+            }
+            };
+
+            var data = [trace1, trace2];
+
+            var layout = {
+            title: chartTile,
+            xaxis: {
+                tickangle: -45
+            },
+            showlegend: chartLegend,
+            barmode: 'group'
             };
 
             Plotly.newPlot(ID, data, layout);
@@ -353,11 +390,14 @@
                 document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team2[p])] + ";");
             }
 
-            showBigPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Vote share", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
-            showDonutPieChart(TRound1_teams, TRound2_count, "myPlot_big_pie_1", "Participation Rate - Round 1", false);
+            showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Vote share", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
+            // showPieChart(TRound1_teams, TRound1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
+            
+            showVerDblBarChart(null, null, null, null, "myPlot_bar_1", "Group Votes", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]);
+            // showDonutPieChart(TRound1_teams, TRound1_count, "myPlot_Donut_1", "Participation Rate - Round 1", false);
 
-            showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Team Entries for " + team1[p], "rgba(255,0,0,0.6)");
-            showHorBarChart([18, 25, 18, 15, 22], null, "myPlot_hor_bar_2", "Team Entries for " + team2[p], "rgba(0, 102, 255, 0.6)");
+            // showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Group Votes for " + team1[p], IPLcolorsArr[teams_list_st.indexOf(team1[p])]);
+            // showHorBarChart([18, 25, 18, 15, 22], null, "myPlot_hor_bar_2", "Group Votes for " + team2[p], IPLcolorsArr[teams_list_st.indexOf(team2[p])]);
 
             // showVerBarChart(null, [17, 8, 12, 12, 6, 18, 2, 7], "myPlot_hor_bar_1", "Team Entries for CSK", "rgba(255,0,0,0.6)");
             // showVerBarChart(null, [7, 2, 2, 5, 0, 5, 1, 0], "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
@@ -379,16 +419,16 @@
         \*===================================*/
         divran ="<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th align='center'>&nbsp;</th><th align='center'>#</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
         for(j=0; j<players ;j++) {
+            if (player_ranks_ranks[j] > 10) {
+                break;
+            }
             divran = divran + "<td><i class='fa fa-user w3-text-red w3-large'></i></td><td align ='center'>";
-            if(j!=0 && player_score_ranks[j] == player_score_ranks[j-1]) 
+            if(j!=0 && player_score_ranks[j] == player_score_ranks[j-1])
                 divran = divran +"&nbsp";
             else
                 divran = divran + player_ranks_ranks[j];
         
             divran = divran + "</td><td>" + player_list_ranks[j]+"</td><td align='center'>" + player_score_ranks[j] + "</td></tr>";
-            if (player_ranks_ranks[j] > 10) {
-                break;
-            }
         }
         divran = divran +"</table>";
         document.getElementById('top_player_ranks').innerHTML= divran;
@@ -402,7 +442,7 @@
         var divteamrank = "<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th>&nbsp;</th><th>#</th><th>Team Name</th><th>Avg. Score</th></tr>";
         for (let q = 0; q < steam_list_ranks.length; q++) {
             let steam_list_team_ranks = [];
-            steam_list_team_ranks[q] = steam[steam_list_ranks.indexOf(steam_list_ranks[q])];
+            steam_list_team_ranks[q] = steam[steam_short.indexOf(steam_list_ranks[q])];
             divteamrank = divteamrank + "<td><i class='fa fa-users w3-text-red w3-large'></i></td>";
             divteamrank = divteamrank + "<td align ='center'>" + steam_ranks_ranks[q] + "</td><td>" + steam_list_team_ranks[q]+"</td><td align='center'>" + steam_score_ranks[q] + "</td></tr>";                
         }
@@ -412,9 +452,6 @@
         /*=============================*\
                 Home Load Operations
         \*=============================*/
-        // showBigPieChart(TRound1_teams, TRound1_count, "myPlot_big_pie_1", "Participation Rate - Round 1", false, 300);
-        // showBigPieChart(["TEAM A", "TEAM B"], ["59", "120"], "choose_pie_chart", "Vote share", true, 300);
-        // showDonutPieChart(TRound1_teams, TRound1_count, "myPlot_big_pie_1", "Participation Rate - Round 1", false);
         update_match_info();
     </script>
 
