@@ -43,7 +43,7 @@
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>&nbsp;Close Menu</a>
             <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>&nbsp;Overview</a>
             <a href="https://sumvel.github.io/CC_2022/" class="w3-bar-item w3-button w3-padding" target="_new"><i class="fa fa fa-line-chart fa-fw"></i>&nbsp;Score Card</a>
-            <a href=".html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>&nbsp;Hall of fame</a>
+            <a href=".html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-street-view fa-fw"></i>&nbsp;Hall of fame</a>
             <a href="rules.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>&nbsp;Rules</a>
             <a href="about.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-info fa-fw"></i>&nbsp;About</a><br><br>
         </div>
@@ -195,7 +195,7 @@
         var TRound4_teams = steam_st; // not yet released
         
         var TRound1_count = [30, 27, 33, 35, 28] // Manually update for first round;
-        var TRound2_count = [34, 28, 25, 30, 24]; //not yet released
+        var TRound2_count = [25, 25, 25, 25, 25]; //not yet released
         var TRound3_count = [0, 0, 0, 0, 0]; //not yet released
         var TRound4_count = [0, 0, 0, 0, 0]; //not yet released
 
@@ -210,7 +210,8 @@
             var data = [{
                 labels:xArray,
                 values:yArray,
-                hole: .4, type:"pie",
+                // hole: .4,
+                type:"pie",
                 textinfo: "label+percent",
                 insidetextorientation: "radial",
                 marker: {
@@ -262,7 +263,7 @@
                     {
                         font: {size: 20},
                         showarrow: false,
-                        text: 'R2',
+                        text: 'NA',
                         x: 0.80,
                         y: 0.5
                     }],
@@ -279,7 +280,7 @@
         function showVerDblBarChart(x1, y1, x2, y2, ID, chartTile, chartLegend, trace1Color, trace2Color, name1, name2) {
             var trace1 = {
             x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
-            y: [17, 8, 12, 12, 6],
+            y: y1,
             type: 'bar',
             name: name1,
             marker: {
@@ -290,7 +291,7 @@
 
             var trace2 = {
             x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
-            y: [7, 2, 2, 5, 6],
+            y: y2,
             type: 'bar',
             name: name2,
             marker: {
@@ -395,7 +396,7 @@
             showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Support", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
             // showPieChart(TRound1_teams, TRound1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
             
-            showVerDblBarChart(null, null, null, null, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
+            showVerDblBarChart(null, team1_steam_supp[p].steam, null, team2_steam_supp[p].steam, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
             showDonutPieChart(TRound1_teams, TRound1_count, "tr_pie", "Participation Rate - Round 1", false);
 
             // showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Group Supports for " + team1[p], IPLcolorsArr[teams_list_st.indexOf(team1[p])]);
@@ -403,6 +404,8 @@
 
             // showVerBarChart(null, [17, 8, 12, 12, 6, 18, 2, 7], "myPlot_hor_bar_1", "Team Entries for CSK", "rgba(255,0,0,0.6)");
             // showVerBarChart(null, [7, 2, 2, 5, 0, 5, 1, 0], "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
+            console.log(team1_steam_supp[p].steam);
+            console.log(team2_steam_supp[p].steam);
         };
 
         /*=================================*\
@@ -458,6 +461,9 @@
                 Home Load Operations
         \*=============================*/
         update_match_info();
+        // console.log(team1_steam_supp[9].steam[1]);
+        // console.log(team1_steam_supp[8].steam);
+        // console.log(team2_steam_supp[8].steam);
     </script>
 </body>
 
