@@ -71,15 +71,37 @@
             <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
         </header>
 
-        <!-- First Team Row -->
-        <div class="w3-row-padding w3-margin-bottom">
-            <!-- Pie chart -->
+        <div class="w3-row-padding">
+            <!-- Individual top ranking -->
             <div class="w3-quarter">
-                <div id="myPlot_big_pie_1" style="width:100%;max-width:500px"></div>
+                <h5>Individual Rankings</h5>
+            </div>
+            <div class="w3-quarter">
+                <h5>Team Rankings</h5>
             </div>
             <!-- Rankings and vote count -->
+            <div class="w3-quarter" id="choose_round"></div>
+            <!-- Team A bar chart -->
+            <div class="w3-quarter">&nbsp;
+                <!-- <div id="myPlot_hor_bar_1" style="width:100%;max-width:500px"></div> -->
+            </div>
+        </div>
+
+        <!-- First Team Row -->
+        <div class="w3-row-padding w3-margin-bottom">
+            <!-- Individual ranking -->
             <div class="w3-quarter">
-                <div class="w3-margin-bottom" id="choose_round"></div>
+                <div class="w3-quarter" id="top_player_ranks" style="width:100%;max-width:500px;height:450px;overflow:auto;"></div>
+            </div>
+
+            <!-- Team ranking -->
+            <div class="w3-quarter">
+                <div class="w3-quarter" id="top_team_ranks" style="width:100%;max-width:500px;height:450px;overflow: auto;"></div>
+            </div>
+
+            <!-- Rankings and vote count -->
+            <div class="w3-quarter">
+                <!-- <div class="w3-margin-bottom" id="choose_round"></div> -->
                 <div class="w3-half">
                     <div class="w3-container ipl-csk w3-padding" id="choose_teamA_container">
                         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
@@ -96,10 +118,21 @@
                         <div id="choose_teamB">TEAM B</div>
                     </div>
                 </div>
-                <div class="w3-row-padding w3-margin-bottom" style="height:300px;">
-                    <h5>Individual Top Rankings</h5>
-                    <div class="w3-container" id="top_player_ranks" style="height:260px;overflow: auto;"></div>
-                </div>
+                <div id="choose_pie_chart" style="width:100%;max-width:500px;overflow: auto;"></div>
+            </div>
+
+            <!-- Team A bar chart -->
+            <div class="w3-quarter">
+                Hellow World
+                <!-- <div id="choose_pie_chart" style="width:100%;max-width:500px;height:450px;overflow: auto;"></div> -->
+            </div>
+        </div>
+        
+        <!-- Second Team Row -->
+        <div class="w3-row-padding w3-margin-bottom">
+            <!-- Pie chart -->
+            <div class="w3-half">
+                <div id="myPlot_big_pie_1" style="width:100%;max-width:500px"></div>
             </div>
             <!-- Team A bar chart -->
             <div class="w3-quarter">
@@ -159,8 +192,9 @@
         var TRound2_teams = steam_st; // not yet released
         var TRound3_teams = steam_st; // not yet released
         var TRound4_teams = steam_st; // not yet released
+        
         var TRound1_count = [35, 33, 30, 27, 28] //[24, 18, 12, 12, 6, 23, 3, 7];
-        var TRound2_count = [0, 0, 0, 0, 0]; //not yet released
+        var TRound2_count = [34, 28, 25, 30, 24]; //not yet released
         var TRound3_count = [0, 0, 0, 0, 0]; //not yet released
         var TRound4_count = [0, 0, 0, 0, 0]; //not yet released
 
@@ -170,23 +204,72 @@
 
         // var xArray = [24, 18, 12, 12, 6, 23, 3, 7];
         // var yArray = ["WC", "Electrical", "RP", "M&S", "TechCom", "WPRS", "A2 & CST", "Others"];
-        function showBigPieChart(xArray, yArray, ID, chartTile, chartLegend) {
-            if (!xArray || xArray == null) {xArray = TRound1_teams;}
-            if (!yArray || yArray == null) {yArray = TRound1_count;}
+        function showBigPieChart(xArray, yArray, ID, chartTile, chartLegend, chartHeight, chartColors /* array eg. [red, blue]*/) {
             if (!chartLegend || chartLegend == null) {chartLegend = false;}
-            
-            var layout = {
-                title:chartTile,
-                showlegend: chartLegend
-            };
-
             var data = [{
                 labels:xArray,
                 values:yArray,
                 hole: .4, type:"pie",
                 textinfo: "label+percent",
-                insidetextorientation: "radial"
+                insidetextorientation: "radial",
+                marker: {
+                    colors: chartColors
+                }
             }];
+
+            var layout = {
+                title:chartTile,
+                showlegend: chartLegend,
+                height: chartHeight
+            };
+
+            Plotly.newPlot(ID, data, layout);
+        }
+
+        function showDonutPieChart(xArray, yArray, ID, chartTile, chartLegend) {
+            if (!chartLegend || chartLegend == null) {chartLegend = false;}
+
+            var data = [{
+                values: TRound1_count,
+                labels: TRound1_teams,
+                domain: {column: 0},
+                name: 'Round 1',
+                hoverinfo: 'label+percent+name',
+                hole: .4,
+                type: 'pie'
+                },{
+                values: TRound2_count,
+                labels: TRound2_teams,
+                text: 'Round 2',
+                textposition: 'inside',
+                domain: {column: 1},
+                name: 'Round 2',
+                hoverinfo: 'label+percent+name',
+                hole: .4,
+                type: 'pie'
+            }];
+
+            var layout = {
+                title: 'Team Participation',
+                annotations: [{
+                        font: {size: 20},
+                        showarrow: false,
+                        text: 'ROUND-1',
+                        x: 0.16,
+                        y: 0.5
+                    },
+                    {
+                        font: {size: 20},
+                        showarrow: false,
+                        text: 'ROUND-2',
+                        x: 0.84,
+                        y: 0.5
+                    }],
+                height: 450,
+                width: 775,
+                showlegend: false,
+                grid: {rows: 1, columns: 2}
+            };
 
             Plotly.newPlot(ID, data, layout);
         }
@@ -270,6 +353,9 @@
                 document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team2[p])] + ";");
             }
 
+            showBigPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Vote share", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
+            showDonutPieChart(TRound1_teams, TRound2_count, "myPlot_big_pie_1", "Participation Rate - Round 1", false);
+
             showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Team Entries for " + team1[p], "rgba(255,0,0,0.6)");
             showHorBarChart([18, 25, 18, 15, 22], null, "myPlot_hor_bar_2", "Team Entries for " + team2[p], "rgba(0, 102, 255, 0.6)");
 
@@ -288,30 +374,47 @@
 		divChoose = divChoose + "</select>";
 		document.getElementById('choose_round').innerHTML = divChoose;
 
-        /*=======================*\
-                Home Top Ranks
-        \*=======================*/
-        divran ="<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr bgcolor='00FFE0'><th align='center'>&nbsp;</th><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
-        for(j=0; j<10 ;j++) {
-            if(j%2 != 0)
-                divran = divran + "<tr bgcolor='#D8D8D8'>";
-            else
-                divran = divran + "<tr bgcolor='#F8F8F8'>";
+        /*==================================*\
+                Home Top Individual Ranks
+        \*===================================*/
+        divran ="<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th align='center'>&nbsp;</th><th align='center'>#</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
+        for(j=0; j<players ;j++) {
             divran = divran + "<td><i class='fa fa-user w3-text-red w3-large'></i></td><td align ='center'>";
-            if(j!=0 && player_score_ranks[j] == player_score_ranks[j-1])
+            if(j!=0 && player_score_ranks[j] == player_score_ranks[j-1]) 
                 divran = divran +"&nbsp";
             else
                 divran = divran + player_ranks_ranks[j];
         
-            divran = divran + "</td><td>" + player_list_ranks[j]+"</td><td align='center'>" + player_score_ranks[j] + "</td></tr>";  // .toUpperCase() 
+            divran = divran + "</td><td>" + player_list_ranks[j]+"</td><td align='center'>" + player_score_ranks[j] + "</td></tr>";
+            if (player_ranks_ranks[j] > 10) {
+                break;
+            }
         }
         divran = divran +"</table>";
         document.getElementById('top_player_ranks').innerHTML= divran;
 
+        /*==================================*\
+                Home Top Team Ranks
+        \*==================================*/
+        console.log("Team average: " + steam_avg + " " + steam_short);
+        console.log("Team ranks: " + steam_list_ranks + " " + steam_score_ranks + " " + steam_ranks_ranks);
+
+        var divteamrank = "<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th>&nbsp;</th><th>#</th><th>Team Name</th><th>Avg. Score</th></tr>";
+        for (let q = 0; q < steam_list_ranks.length; q++) {
+            let steam_list_team_ranks = [];
+            steam_list_team_ranks[q] = steam[steam_list_ranks.indexOf(steam_list_ranks[q])];
+            divteamrank = divteamrank + "<td><i class='fa fa-users w3-text-red w3-large'></i></td>";
+            divteamrank = divteamrank + "<td align ='center'>" + steam_ranks_ranks[q] + "</td><td>" + steam_list_team_ranks[q]+"</td><td align='center'>" + steam_score_ranks[q] + "</td></tr>";                
+        }
+        divteamrank = divteamrank +"</table>";
+        document.getElementById('top_team_ranks').innerHTML= divteamrank;
+
         /*=============================*\
                 Home Load Operations
         \*=============================*/
-        showBigPieChart(TRound1_teams, TRound1_count, "myPlot_big_pie_1", "Team Entries for Round 1", false);
+        // showBigPieChart(TRound1_teams, TRound1_count, "myPlot_big_pie_1", "Participation Rate - Round 1", false, 300);
+        // showBigPieChart(["TEAM A", "TEAM B"], ["59", "120"], "choose_pie_chart", "Vote share", true, 300);
+        // showDonutPieChart(TRound1_teams, TRound1_count, "myPlot_big_pie_1", "Participation Rate - Round 1", false);
         update_match_info();
     </script>
 
