@@ -43,6 +43,7 @@
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>&nbsp;Close Menu</a>
             <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>&nbsp;Overview</a>
             <a href="https://sumvel.github.io/CC_2022/" class="w3-bar-item w3-button w3-padding" target="_new"><i class="fa fa fa-line-chart fa-fw"></i>&nbsp;Score Card</a>
+            <a href=".html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>&nbsp;Hall of fame</a>
             <a href="rules.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>&nbsp;Rules</a>
             <a href="about.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-info fa-fw"></i>&nbsp;About</a><br><br>
         </div>
@@ -79,9 +80,9 @@
             <div class="w3-quarter">
                 <h5>Group Rankings</h5>
             </div>
-            <!-- Rankings and vote count -->
+            <!-- Rankings and Support count -->
             <div class="w3-quarter">
-                <h5>Vote Share</h5>
+                <h5>Support Breakdown</h5>
             </div>
             <!-- Team A bar chart -->
             <div class="w3-quarter" id="choose_round"></div>
@@ -96,10 +97,10 @@
 
             <!-- Team ranking -->
             <div class="w3-quarter">
-                <div class="w3-quarter" id="top_team_ranks" style="width:100%;max-width:500px;height:450px;overflow: auto;"></div>
+                <div class="w3-quarter" id="top_team_ranks" style="width:100%;max-width:500px;"></div>
             </div>
 
-            <!-- Rankings and vote count -->
+            <!-- Rankings and Support count -->
             <div class="w3-quarter">
                 <!-- <div class="w3-margin-bottom" id="choose_round"></div> -->
                 <div class="w3-half">
@@ -214,39 +215,39 @@
                 insidetextorientation: "radial",
                 marker: {
                     colors: chartColors
-                }
+                },
+                automargin: true
             }];
 
             var layout = {
                 title:chartTile,
                 showlegend: chartLegend,
-                height: chartHeight
+                height: chartHeight,
+                margin: {"t": 50, "b": 20, "l": 1, "r": 1}
             };
 
             Plotly.newPlot(ID, data, layout);
         }
 
         function showDonutPieChart(xArray, yArray, ID, chartTile, chartLegend) {
-            if (!chartLegend || chartLegend == null) {chartLegend = false;}
-
             var data = [{
                 values: TRound1_count,
                 labels: TRound1_teams,
+                textposition: 'inside',
                 domain: {column: 0},
-                name: 'Round 1',
                 hoverinfo: 'label+percent+name',
                 hole: .4,
-                type: 'pie'
+                type: 'pie',
+                automargin: true
                 },{
                 values: TRound2_count,
                 labels: TRound2_teams,
-                text: 'Round 2',
                 textposition: 'inside',
                 domain: {column: 1},
-                name: 'Round 2',
                 hoverinfo: 'label+percent+name',
                 hole: .4,
-                type: 'pie'
+                type: 'pie',
+                automargin: true
             }];
 
             var layout = {
@@ -254,32 +255,33 @@
                 annotations: [{
                         font: {size: 20},
                         showarrow: false,
-                        text: 'ROUND-1',
-                        x: 0.16,
+                        text: 'R1',
+                        x: 0.2,
                         y: 0.5
                     },
                     {
                         font: {size: 20},
                         showarrow: false,
-                        text: 'ROUND-2',
-                        x: 0.84,
+                        text: 'R2',
+                        x: 0.80,
                         y: 0.5
                     }],
-                height: 450,
-                width: 775,
+                height: 190,
                 showlegend: chartLegend,
-                grid: {rows: 1, columns: 2}
+                grid: {rows: 1, columns: 2},
+                margin: {"t": 30, "b": 5, "l": 0, "r": 0}
+
             };
 
             Plotly.newPlot(ID, data, layout);
         }
 
-        function showVerDblBarChart(x1, y1, x2, y2, ID, chartTile, chartLegend, trace1Color, trace2Color) {
+        function showVerDblBarChart(x1, y1, x2, y2, ID, chartTile, chartLegend, trace1Color, trace2Color, name1, name2) {
             var trace1 = {
             x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
             y: [17, 8, 12, 12, 6],
             type: 'bar',
-            name: 'Primary Product',
+            name: name1,
             marker: {
                 color: trace1Color,
                 opacity: 0.7,
@@ -290,10 +292,10 @@
             x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
             y: [7, 2, 2, 5, 6],
             type: 'bar',
-            name: 'Secondary Product',
+            name: name2,
             marker: {
                 color: trace2Color,
-                opacity: 0.7
+                opacity: 0.8
             }
             };
 
@@ -390,14 +392,14 @@
                 document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team2[p])] + ";");
             }
 
-            showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Vote share", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
+            showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Support", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
             // showPieChart(TRound1_teams, TRound1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
             
-            showVerDblBarChart(null, null, null, null, "myPlot_bar_1", "Group Votes", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]);
-            // showDonutPieChart(TRound1_teams, TRound1_count, "myPlot_Donut_1", "Participation Rate - Round 1", false);
+            showVerDblBarChart(null, null, null, null, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
+            showDonutPieChart(TRound1_teams, TRound1_count, "tr_pie", "Participation Rate - Round 1", false);
 
-            // showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Group Votes for " + team1[p], IPLcolorsArr[teams_list_st.indexOf(team1[p])]);
-            // showHorBarChart([18, 25, 18, 15, 22], null, "myPlot_hor_bar_2", "Group Votes for " + team2[p], IPLcolorsArr[teams_list_st.indexOf(team2[p])]);
+            // showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Group Supports for " + team1[p], IPLcolorsArr[teams_list_st.indexOf(team1[p])]);
+            // showHorBarChart([18, 25, 18, 15, 22], null, "myPlot_hor_bar_2", "Group Supports for " + team2[p], IPLcolorsArr[teams_list_st.indexOf(team2[p])]);
 
             // showVerBarChart(null, [17, 8, 12, 12, 6, 18, 2, 7], "myPlot_hor_bar_1", "Team Entries for CSK", "rgba(255,0,0,0.6)");
             // showVerBarChart(null, [7, 2, 2, 5, 0, 5, 1, 0], "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
@@ -446,7 +448,10 @@
             divteamrank = divteamrank + "<td><i class='fa fa-users w3-text-red w3-large'></i></td>";
             divteamrank = divteamrank + "<td align ='center'>" + steam_ranks_ranks[q] + "</td><td>" + steam_list_team_ranks[q]+"</td><td align='center'>" + steam_score_ranks[q] + "</td></tr>";                
         }
+
         divteamrank = divteamrank +"</table>";
+        divteamrank = divteamrank +"<br><div id='tr_pie'></div>";
+
         document.getElementById('top_team_ranks').innerHTML= divteamrank;
 
         /*=============================*\
@@ -454,7 +459,6 @@
         \*=============================*/
         update_match_info();
     </script>
-
 </body>
 
 </html>
