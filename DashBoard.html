@@ -447,7 +447,7 @@
         console.log("Team average: " + steam_avg + " " + steam_short);
         console.log("Team ranks: " + steam_list_ranks + " " + steam_score_ranks + " " + steam_ranks_ranks);
 
-        var divteamrank = "<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th>&nbsp;</th><th>#</th><th>Team Name</th><th>Avg. Score</th></tr>";
+        var divteamrank = "<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th>&nbsp;</th><th>#</th><th>Team Name</th><th>Avg Score</th></tr>";
         for (let q = 0; q < steam_list_ranks.length; q++) {
             let steam_list_team_ranks = [];
             steam_list_team_ranks[q] = steam[steam_short.indexOf(steam_list_ranks[q])];
