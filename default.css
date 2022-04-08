@@ -36,9 +36,6 @@ tr, td {
     right: 25px;
 }
 
-.reminder {
-    font-size: 3rem;
-}
 /* Colours */
 .slb-blue,.slb-hover-blue:hover{color:#fff!important;background-color:#003366!important}
 .smith-green,.smith-hover-green:hover{color:#fff!important;background-color:#006e38!important}
