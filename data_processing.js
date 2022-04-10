@@ -136,12 +136,20 @@ sort_value(list_prad2, 0, players - 1, score_prad2);
 for (i=0;i<steam_cnt;i++)
 {
 	temp_score = 0;
+	//temp_ply_avg = 0;
 	for(j=0;j<players;j++)
 		if(player_steam_list[j] == steam_short[i])
 		{
-			steam_part[i]++;
-			temp_score = temp_score + player_score[j];
+			// for(m=0;m<match_result.length;m++) 
+			// 	if(picks[j].pick[m] == "NS")
+			// 		break;
+			// if(m==match_result.length)
+			// {
+				steam_part[i]++;
+				temp_score = temp_score + player_score[j];
+			// }
 		}
+	//alert(steam_part[i]);
 	steam_avg[i] = Math.round((temp_score / steam_part[i]) * 100 )/100 ;
 	steam_list_ranks[i] = steam_short[i];
 	steam_score_ranks[i] = steam_avg[i];
