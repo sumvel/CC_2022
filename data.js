@@ -7,9 +7,10 @@ var mat_per_week = new Array(0,7,15,24,33,41,50,59,67,69); // included
 var week_num = 0;
 if(week_num>0)
 {
-	for(m=0;m<mat_per_week[week_num-1];m++)
-		match_result[m] = "NONE";
-	for(m=mat_per_week[week_num];m<mat_per_week[week_num+1] || m<match_result.length;m++)
+	if(week_num != 1)
+		for(m=0;m<=mat_per_week[week_num-1];m++)
+			match_result[m] = "NONE";
+	for(m=mat_per_week[week_num]+1;m<mat_per_week[week_num+1] || m<match_result.length;m++)
 		match_result[m] = "NONE";
 }
 
