@@ -81,14 +81,14 @@
         </header>
 
         <!--Temp Notice-->
-        <div class="w3-container w3-red w3-text-white">
+        <!-- <div class="w3-container w3-red w3-text-white">
             <h3>ROUND-3 entries being updated... Thanks for your patience</h3>
-        </div>
+        </div> -->
         <br>
         <div class="w3-row-padding">
             <!-- Individual top ranking -->
             <div class="w3-quarter">
-                <h5>Individual Rankings</h5>
+                <h5>Individual Rankings as of ( <span id="cur_date1"></span> )</h5>
             </div>
             <div class="w3-quarter">
                 <h5>Group Rankings</h5>
@@ -422,6 +422,10 @@
             // showVerBarChart(null, [7, 2, 2, 5, 0, 5, 1, 0], "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
             console.log(team1_steam_supp[p].steam);
             console.log(team2_steam_supp[p].steam);
+
+            const d = new Date();
+            let date = d.getDate() + '-' + (d.getMonth()+1) + '-' + d.getFullYear();
+            document.getElementById("cur_date1").innerText = date;
         };
 
         /*=================================*\
