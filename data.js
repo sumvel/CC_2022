@@ -2,7 +2,7 @@ var r1_end = 15;
 var r2_end = 30;//30;
 var r3_end = 50;//70;
 var r3_exists = false;
-var match_result = new Array("KKR", "DC", "PBKS", "GT", "RR", "RCB", "LSG", "KKR", "RR", "GT", "PBKS", "LSG", "RCB", "KKR", "LSG", "GT", "SRH", "RCB", "DC", "RR", "SRH", "CSK", "PBKS", "GT", "SRH", "LSG", "RCB", "SRH", "GT", "RR", "RCB", "DC", "CSK", "RR", "GT", "SRH", "LSG", "PBKS", "RR", "GT");
+var match_result = new Array("KKR", "DC", "PBKS", "GT", "RR", "RCB", "LSG", "KKR", "RR", "GT", "PBKS", "LSG", "RCB", "KKR", "LSG", "GT", "SRH", "RCB", "DC", "RR", "SRH", "CSK", "PBKS", "GT", "SRH", "LSG", "RCB", "SRH", "GT", "RR", "RCB", "DC", "CSK", "RR", "GT", "SRH", "LSG", "PBKS", "RR", "GT", "DC");
 var mat_per_week = new Array(0,7,15,24,33,41,50,59,67,69); // included
 var week_num = 0;
 if(week_num>0)
