@@ -2,7 +2,7 @@ var r1_end = 15;
 var r2_end = 30;//30;
 var r3_end = 50;//70;
 var r3_exists = false;
-var match_result = new Array("KKR", "DC", "PBKS", "GT", "RR", "RCB", "LSG", "KKR", "RR", "GT", "PBKS", "LSG", "RCB", "KKR", "LSG", "GT", "SRH", "RCB", "DC", "RR", "SRH", "CSK", "PBKS", "GT", "SRH", "LSG", "RCB", "SRH", "GT", "RR", "RCB", "DC", "CSK", "RR", "GT", "SRH", "LSG", "PBKS", "RR", "GT", "DC", "LSG", "GT", "MI", "LSG", "CSK", "KKR", "PBKS", "RCB", "DC");
+var match_result = new Array("KKR", "DC", "PBKS", "GT", "RR", "RCB", "LSG", "KKR", "RR", "GT", "PBKS", "LSG", "RCB", "KKR", "LSG", "GT", "SRH", "RCB", "DC", "RR", "SRH", "CSK", "PBKS", "GT", "SRH", "LSG", "RCB", "SRH", "GT", "RR", "RCB", "DC", "CSK", "RR", "GT", "SRH", "LSG", "PBKS", "RR", "GT", "DC", "LSG", "GT", "MI", "LSG", "CSK", "KKR", "PBKS", "RCB", "DC", "MI", "RR", "LSG");
 var mat_per_week = new Array(0,7,15,24,33,41,50,59,67,69); // included
 var week_num = 0;
 if(week_num>0)
@@ -68,7 +68,8 @@ for(i=0;i<players;i++)
 }
 //var dat = new Array("26-03", "27-03", "27-03", "28-03", "29-03", "30-03", "31-03", "01-04", "02-04", "02-04", "03-04", "04-04", "05-04", "06-04", "07-04");
 // var dat = new Array("26-03", "27-03", "27-03", "28-03", "29-03", "30-03", "31-03", "01-04", "02-04", "02-04", "03-04", "04-04", "05-04", "06-04", "07-04", "08-04", "09-04", "09-04", "10-04", "10-04", "11-04", "12-04", "13-04", "14-04", "15-04", "16-04", "16-04", "17-04", "17-04", "18-04");
-var dat = new Array("26-03", "27-03", "27-03", "28-03", "29-03", "30-03", "31-03", "01-04", "02-04", "02-04", "03-04", "04-04", "05-04", "06-04", "07-04", "08-04", "09-04", "09-04", "10-04", "10-04", "11-04", "12-04", "13-04", "14-04", "15-04", "16-04", "16-04", "17-04", "17-04", "18-04", "19-04", "20-04", "21-04", "22-04", "23-04", "23-04", "24-04", "25-04", "26-04", "27-04", "28-04", "29-04", "30-04", "30-04", "01-05", "01-05", "02-05", "03-05", "04-05", "05-05");
+//var dat = new Array("26-03", "27-03", "27-03", "28-03", "29-03", "30-03", "31-03", "01-04", "02-04", "02-04", "03-04", "04-04", "05-04", "06-04", "07-04", "08-04", "09-04", "09-04", "10-04", "10-04", "11-04", "12-04", "13-04", "14-04", "15-04", "16-04", "16-04", "17-04", "17-04", "18-04", "19-04", "20-04", "21-04", "22-04", "23-04", "23-04", "24-04", "25-04", "26-04", "27-04", "28-04", "29-04", "30-04", "30-04", "01-05", "01-05", "02-05", "03-05", "04-05", "05-05");
+var dat = new Array("26-03", "27-03", "27-03", "28-03", "29-03", "30-03", "31-03", "01-04", "02-04", "02-04", "03-04", "04-04", "05-04", "06-04", "07-04", "08-04", "09-04", "09-04", "10-04", "10-04", "11-04", "12-04", "13-04", "14-04", "15-04", "16-04", "16-04", "17-04", "17-04", "18-04", "19-04", "20-04", "21-04", "22-04", "23-04", "23-04", "24-04", "25-04", "26-04", "27-04", "28-04", "29-04", "30-04", "30-04", "01-05", "01-05", "02-05", "03-05", "04-05", "05-05", "06-05", "07-05", "07-05", "08-05", "08-05", "09-05", "10-05", "11-05", "12-05", "13-05", "14-05", "15-05", "15-05", "16-05", "17-05", "18-05", "19-05", "20-05", "21-05", "22-05");
 
 var matches = dat.length;
 //alert("matches = " + matches);
@@ -78,9 +79,11 @@ var matches = dat.length;
 //var team2 = new Array("KKR", "MI", "RCB", "LSG", "RR", "KKR", "CSK", "KKR", "RR", "DC", "PBKS", "LSG", "RCB", "MI", "DC");
 // var team1 = new Array("CSK" ,"DC" ,"PBKS" ,"GT" ,"SRH" ,"RCB" ,"LSG" ,"PBKS" ,"MI" ,"GT" ,"CSK" ,"SRH" ,"RR" ,"KKR" ,"LSG" ,"PBKS" ,"CSK" ,"RCB" ,"KKR" ,"RR" ,"SRH" ,"CSK" ,"MI" ,"RR" ,"SRH" ,"MI" ,"DC" ,"PBKS" ,"GT" ,"RR");
 // var team2 = new Array("KKR" ,"MI" ,"RCB" ,"LSG" ,"RR" ,"KKR" ,"CSK" ,"KKR" ,"RR" ,"DC" ,"PBKS" ,"LSG" ,"RCB" ,"MI" ,"DC" ,"GT" ,"SRH" ,"MI" ,"DC" ,"LSG" ,"GT" ,"RCB" ,"PBKS" ,"GT" ,"KKR" ,"LSG" ,"RCB" ,"SRH" ,"CSK" ,"KKR");
+//var team1 = new Array("CSK" ,"DC" ,"PBKS" ,"GT" ,"SRH" ,"RCB" ,"LSG" ,"PBKS" ,"MI" ,"GT" ,"CSK" ,"SRH" ,"RR" ,"KKR" ,"LSG" ,"PBKS" ,"CSK" ,"RCB" ,"KKR" ,"RR" ,"SRH" ,"CSK" ,"MI" ,"RR" ,"SRH" ,"MI" ,"DC" ,"PBKS" ,"GT" ,"RR" ,"LSG" ,"DC" ,"MI" ,"DC" ,"KKR" ,"RCB" ,"LSG" ,"PBKS" ,"RCB" ,"GT" ,"DC" ,"PBKS" ,"GT" ,"RR" ,"DC" ,"SRH" ,"KKR" ,"GT" ,"RCB" ,"DC");
+//var team2 = new Array("KKR" ,"MI" ,"RCB" ,"LSG" ,"RR" ,"KKR" ,"CSK" ,"KKR" ,"RR" ,"DC" ,"PBKS" ,"LSG" ,"RCB" ,"MI" ,"DC" ,"GT" ,"SRH" ,"MI" ,"DC" ,"LSG" ,"GT" ,"RCB" ,"PBKS" ,"GT" ,"KKR" ,"LSG" ,"RCB" ,"SRH" ,"CSK" ,"KKR" ,"RCB" ,"PBKS" ,"CSK" ,"RR" ,"GT" ,"SRH" ,"MI" ,"CSK" ,"RR" ,"SRH" ,"KKR" ,"LSG" ,"RCB" ,"MI" ,"LSG" ,"CSK" ,"RR" ,"PBKS" ,"CSK" ,"SRH");
 
-var team1 = new Array("CSK" ,"DC" ,"PBKS" ,"GT" ,"SRH" ,"RCB" ,"LSG" ,"PBKS" ,"MI" ,"GT" ,"CSK" ,"SRH" ,"RR" ,"KKR" ,"LSG" ,"PBKS" ,"CSK" ,"RCB" ,"KKR" ,"RR" ,"SRH" ,"CSK" ,"MI" ,"RR" ,"SRH" ,"MI" ,"DC" ,"PBKS" ,"GT" ,"RR" ,"LSG" ,"DC" ,"MI" ,"DC" ,"KKR" ,"RCB" ,"LSG" ,"PBKS" ,"RCB" ,"GT" ,"DC" ,"PBKS" ,"GT" ,"RR" ,"DC" ,"SRH" ,"KKR" ,"GT" ,"RCB" ,"DC");
-var team2 = new Array("KKR" ,"MI" ,"RCB" ,"LSG" ,"RR" ,"KKR" ,"CSK" ,"KKR" ,"RR" ,"DC" ,"PBKS" ,"LSG" ,"RCB" ,"MI" ,"DC" ,"GT" ,"SRH" ,"MI" ,"DC" ,"LSG" ,"GT" ,"RCB" ,"PBKS" ,"GT" ,"KKR" ,"LSG" ,"RCB" ,"SRH" ,"CSK" ,"KKR" ,"RCB" ,"PBKS" ,"CSK" ,"RR" ,"GT" ,"SRH" ,"MI" ,"CSK" ,"RR" ,"SRH" ,"KKR" ,"LSG" ,"RCB" ,"MI" ,"LSG" ,"CSK" ,"RR" ,"PBKS" ,"CSK" ,"SRH");
+var team1 = new Array("CSK" ,"DC" ,"PBKS" ,"GT" ,"SRH" ,"RCB" ,"LSG" ,"PBKS" ,"MI" ,"GT" ,"CSK" ,"SRH" ,"RR" ,"KKR" ,"LSG" ,"PBKS" ,"CSK" ,"RCB" ,"KKR" ,"RR" ,"SRH" ,"CSK" ,"MI" ,"RR" ,"SRH" ,"MI" ,"DC" ,"PBKS" ,"GT" ,"RR" ,"LSG" ,"DC" ,"MI" ,"DC" ,"KKR" ,"RCB" ,"LSG" ,"PBKS" ,"RCB" ,"GT" ,"DC" ,"PBKS" ,"GT" ,"RR" ,"DC" ,"SRH" ,"KKR" ,"GT" ,"RCB" ,"DC" ,"GT" ,"PBKS" ,"LGS" ,"SRH" ,"CSK" ,"MI" ,"LSG" ,"RR" ,"CSK" ,"RCB" ,"KKR" ,"CSK" ,"LSG" ,"PBKS" ,"MI" ,"KKR" ,"RCB" ,"RR" ,"MI" ,"SRH");
+var team2 = new Array("KKR" ,"MI" ,"RCB" ,"LSG" ,"RR" ,"KKR" ,"CSK" ,"KKR" ,"RR" ,"DC" ,"PBKS" ,"LSG" ,"RCB" ,"MI" ,"DC" ,"GT" ,"SRH" ,"MI" ,"DC" ,"LSG" ,"GT" ,"RCB" ,"PBKS" ,"GT" ,"KKR" ,"LSG" ,"RCB" ,"SRH" ,"CSK" ,"KKR" ,"RCB" ,"PBKS" ,"CSK" ,"RR" ,"GT" ,"SRH" ,"MI" ,"CSK" ,"RR" ,"SRH" ,"KKR" ,"LSG" ,"RCB" ,"MI" ,"LSG" ,"CSK" ,"RR" ,"PBKS" ,"CSK" ,"SRH" ,"MI" ,"RR" ,"KKR" ,"RCB" ,"DC" ,"KKR" ,"GT" ,"DC" ,"MI" ,"PBKS" ,"SRH" ,"GT" ,"RR" ,"DC" ,"SRH" ,"LSG" ,"GT" ,"CSK" ,"DC" ,"PBKS");
 var team1_bets = new Array();
 var team2_bets = new Array();
 
