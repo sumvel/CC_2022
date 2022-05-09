@@ -10,6 +10,8 @@ for(mi=0;mi<match_result.length;mi++)
 				player_score[j] = player_score[j]+2;
 			else if(mi>=r2_end && mi<r3_end)
 				player_score[j] = player_score[j]+3;
+			else if(mi>=r3_end && mi<r4_end)
+				player_score[j] = player_score[j]+4;
 		}
 		/*else if(match_result[mi] == 11)
 		{
@@ -45,12 +47,12 @@ for(mi=0;mi<match_result.length;mi++)
 /*for(j=0;j<players;j++)
 {
 	for(i=0;i<4;i++)
-		if(semi_result[i] == picks[j].pick[r3_end+i])
+		if(semi_result[i] == picks[j].pick[r4_end+i])
 			player_score[j] = player_score[j]+4;
-		else if(semi_result[0] == picks[j].pick[r3_end+i] || semi_result[1] == picks[j].pick[r3_end+i] || semi_result[2] == picks[j].pick[r3_end+i] || semi_result[3] == picks[j].pick[r3_end+i])
+		else if(semi_result[0] == picks[j].pick[r4_end+i] || semi_result[1] == picks[j].pick[r4_end+i] || semi_result[2] == picks[j].pick[r4_end+i] || semi_result[3] == picks[j].pick[r4_end+i])
 			player_score[j] = player_score[j]+3;
 	for(;i<6;i++)
-		if(semi_result[4] == picks[j].pick[r3_end+i] || semi_result[5] == picks[j].pick[r3_end+i])
+		if(semi_result[4] == picks[j].pick[r4_end+i] || semi_result[5] == picks[j].pick[r4_end+i])
 			player_score[j] = player_score[j]+5;
 	if(semi_result[6] == picks[j].pick[62])
 		player_score[j] = player_score[j]+7;
@@ -111,8 +113,11 @@ for(i=0;i<teams;i++)
 		for (k = r2_end; k < r3_end; k++)
 			if (picks[j].pick[k] == teams_list_st[i])
 				supps3[i]++;
+		for (k = r3_end; k < r4_end; k++)
+			if (picks[j].pick[k] == teams_list_st[i])
+				supps4[i]++;
 	}
-	supps[i] = supps1[i] + supps2[i] + supps3[i];
+	supps[i] = supps1[i] + supps2[i] + supps3[i] + supps4[i];
 }
 sort_value(new_teams_list, 0, tem_won.length - 1, tem_pts);
 
@@ -123,6 +128,8 @@ if (q > r1_end)
 	nex_scor = 2;
 if (q > r2_end)
 	nex_scor = 3;
+if (q > r3_end)
+	nex_scor = 4;
 for (i = 0; i < players; i++) {
 	if (picks[i].pick[q] == team1[q])
 		score_prad1[i] = score_prad1[i] + nex_scor;
