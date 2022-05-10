@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Cricket Carnival</title>
@@ -49,17 +49,18 @@
             <a href="fame.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-street-view fa-fw"></i>&nbsp;Hall of fame</a>
             <a href="rules.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>&nbsp;Rules</a>
             <a href="about.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-sitemap fa-fw"></i>&nbsp;Team</a><br><br>
-            <!-- <a href="https://apps.powerapps.com/play/154d667e-93da-4e31-9874-1b597a4b00ad?tenantId=41ff26dc-250f-4b13-8981-739be8610c21&skipAppMetadata=true&hidenavbar=true" class="w3-bar-item w3-button w3-yellow w3-padding" target="_new" title='Click here to select your team for Round-2. Last date for selection is 08-APR-2022.'>
+            <a href="https://forms.office.com/r/gSLtniXE93" class="w3-bar-item w3-button w3-yellow w3-padding" target="_new" title='Click here to select your team for Round-5.'>
+                <!-- "https://apps.powerapps.com/play/154d667e-93da-4e31-9874-1b597a4b00ad?tenantId=41ff26dc-250f-4b13-8981-739be8610c21&skipAppMetadata=true&hidenavbar=true" -->
                 <div class="w3-text-pink w3-hover-text-deep-purple w3-center" style="font-size: 4rem;">
-                    <strong>Click here to select for Round4</strong>
+                    <strong>Click here to select for Round5</strong>
                 </div>
-            </a> -->
+            </a>
 
-            <a href="#" class="w3-bar-item w3-button w3-yellow w3-padding">
+            <!-- <a href="#" class="w3-bar-item w3-button w3-yellow w3-padding">
                 <div class="w3-text-cyan w3-hover-text-deep-blue w3-center" style="font-size: 2rem;">
                     <strong>The trick is to never lose hope!</strong>
                 </div>
-            </a>
+            </a> -->
         </div>
     </nav>
 
@@ -110,8 +111,8 @@
         <!-- First Team Row -->
         <div class="w3-row-padding w3-margin-bottom">
             <!-- Individual ranking -->
-            <div class="w3-quarter">
-                <div class="w3-quarter" id="top_player_ranks" style="width:100%;max-width:500px;height:450px;overflow:auto;"></div>
+            <div class="w3-quarter" id="top_player_ranks_group">
+                <!-- <div class="w3-quarter" id="top_player_ranks" style="width:100%;max-width:500px;height:450px;overflow:auto;"></div>                 -->
             </div>
 
             <!-- Team ranking -->
@@ -211,15 +212,15 @@
         // var steam_st = new Array("WPRS", "WEC", "Elec", "RP", "RoS");
         // var teams_list_st = new Array("CSK", "DC", "GT", "KKR", "LSG", "MI", "PBKS", "RCB", "RR", "SRH");
 
-        var TRound1_teams = steam_st; // ["Electrical", "RP", "WEC", "WPRS", "Rest of STSI"];
-        var TRound2_teams = steam_st; // not yet released
-        var TRound3_teams = steam_st; // not yet released
-        var TRound4_teams = steam_st; // not yet released
+        var TR1_teams = steam_short; // ["Electrical", "RP", "WEC", "WPRS", "Rest of STSI"];
+        var TR2_teams = steam_short; // not yet released
+        var TR3_teams = steam_short; // not yet released
+        var TR4_teams = steam_short; // not yet released
         
-        var TRound1_count = [30, 27, 33, 35, 28] // Manually update for first round;
-        var TRound2_count = [30, 16, 26, 21, 31]; //not yet released
-        var TRound3_count = [0, 0, 0, 0, 0]; //not yet released
-        var TRound4_count = [0, 0, 0, 0, 0]; //not yet released
+        var TR1_count = [30, 27, 33, 35, 28] // Manually update for first round;
+        var TR2_count = [30, 16, 26, 21, 31]; //not yet released
+        var TR3_count = [16, 23, 17, 23, 19]; //not yet released
+        var TR4_count = [15, 23, 14, 18, 9]; //not yet released
 
         var IPLcolorsObj = {CSK:"#FFFF3C", DC:"#00008B", GT:"#4752a1", KKR:"#2E0854", LSG:"#7fd2d8", MI:"#004BA0", PBKS:"#DCDDDF", RCB:"#EC1C24", RR:"#CBA92B", SRH:"#FF822A"};
         var IPLcolorsArr = ["#FFFF3C", "#00008B", "#4752a1", "#2E0854", "#7fd2d8", "#004BA0", "#DCDDDF", "#EC1C24", "#CBA92B", "#FF822A"];
@@ -252,24 +253,28 @@
             Plotly.newPlot(ID, data, layout);
         }
 
-        function showDonutPieChart(xArray, yArray, ID, chartTile, chartLegend) {
+        function showDonutPieChart(ID, chartTile, chartLegend, val1, lbl1, val2, lbl2, txt1, txt2) {
             var data = [{
-                values: TRound1_count,
-                labels: TRound1_teams,
+                values: val1,
+                labels: lbl1,
                 textposition: 'inside',
                 domain: {column: 0},
                 hoverinfo: 'label+percent+name',
                 hole: .4,
                 type: 'pie',
+                textinfo: "label+percent",
+                insidetextorientation: "radial",
                 automargin: true
                 },{
-                values: TRound2_count,
-                labels: TRound2_teams,
+                values: val2,
+                labels: lbl2,
                 textposition: 'inside',
                 domain: {column: 1},
                 hoverinfo: 'label+percent+name',
                 hole: .4,
                 type: 'pie',
+                textinfo: "label+percent",
+                insidetextorientation: "radial",
                 automargin: true
             }];
 
@@ -278,14 +283,14 @@
                 annotations: [{
                         font: {size: 20},
                         showarrow: false,
-                        text: 'R1',
+                        text: txt1,
                         x: 0.2,
                         y: 0.5
                     },
                     {
                         font: {size: 20},
                         showarrow: false,
-                        text: 'R2',
+                        text: txt2,
                         x: 0.80,
                         y: 0.5
                     }],
@@ -337,8 +342,8 @@
         }
 
         function showHorBarChart(xArray, yArray, ID, chartTile, barColor) {
-            if (!xArray || xArray == null) {xArray = TRound1_count;}
-            if (!yArray || yArray == null) {yArray = TRound1_teams;}
+            if (!xArray || xArray == null) {xArray = TR1_count;}
+            if (!yArray || yArray == null) {yArray = TR1_teams;}
             if (!chartTile) {chartTile="undefined";}
             if (!barColor) {barColor="rgba(255,0,0,0.6)";}
             var data = [{
@@ -356,8 +361,8 @@
         }
 
         function showVerBarChart(xArray, yArray, ID, chartTile, barColor) {
-            if (!xArray || xArray == null) {xArray = TRound1_teams;}
-            if (!yArray || yArray == null) {yArray = TRound1_count;}
+            if (!xArray || xArray == null) {xArray = TR1_teams;}
+            if (!yArray || yArray == null) {yArray = TR1_count;}
             if (!chartTile) {chartTile="undefined";}
             if (!barColor) {barColor="rgba(255,0,0,0.6)";}
             var data = [{
@@ -416,10 +421,12 @@
             }
 
             showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Support", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
-            // showPieChart(TRound1_teams, TRound1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
+            // showPieChart(TR1_teams, TR1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
             
             showVerDblBarChart(null, team1_steam_supp[p].steam, null, team2_steam_supp[p].steam, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
-            showDonutPieChart(TRound1_teams, TRound1_count, "tr_pie", "Participation Rate - Round 1", false);
+            showDonutPieChart("tr_pie_1", "Participation Rate - Round 1 and 2", false, TR1_count, TR1_teams, TR2_count, TR2_teams, "R1", "R2");
+            showDonutPieChart("tr_pie_2", "Participation Rate - Round 3 and 4", false, TR3_count, TR3_teams, TR4_count, TR4_teams, "R3", "R4");
+
 
             // showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Group Supports for " + team1[p], IPLcolorsArr[teams_list_st.indexOf(team1[p])]);
             // showHorBarChart([18, 25, 18, 15, 22], null, "myPlot_hor_bar_2", "Group Supports for " + team2[p], IPLcolorsArr[teams_list_st.indexOf(team2[p])]);
@@ -448,9 +455,9 @@
         /*==================================*\
                 Home Top Individual Ranks
         \*===================================*/
-        divran ="<table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th align='center'>&nbsp;</th><th align='center'>#</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
+        var divran ="<div id='top_player_ranks' style='width:100%;max-width:500px;height:238px;overflow:auto;'><table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'><tr class='w3-green'><th align='center'>&nbsp;</th><th align='center'>#</th><th align='center'>Player</th><th align='center'>Score</th></tr>";
         for(j=0; j<players ;j++) {
-            if (player_ranks_ranks[j] > 10) {
+            if (player_ranks_ranks[j] > 5) {
                 break;
             }
             divran = divran + "<td><i class='fa fa-user w3-text-red w3-large'></i></td><td align ='center'>";
@@ -461,8 +468,8 @@
         
             divran = divran + "</td><td>" + player_list_ranks[j]+"</td><td align='center'>" + player_score_ranks[j] + "</td></tr>";
         }
-        divran = divran +"</table>";
-        document.getElementById('top_player_ranks').innerHTML= divran;
+        divran = divran +"</table></div><br><div id='tr_pie_1'></div>";
+        document.getElementById('top_player_ranks_group').innerHTML= divran;
 
         /*==================================*\
                 Home Top Team Ranks
@@ -479,7 +486,7 @@
         }
 
         divteamrank = divteamrank +"</table>";
-        divteamrank = divteamrank +"<br><div id='tr_pie'></div>";
+        divteamrank = divteamrank +"<br><div id='tr_pie_2'></div>";
 
         document.getElementById('top_team_ranks').innerHTML= divteamrank;
 
