@@ -375,7 +375,7 @@ function semi_info()
 	divplycom = divplycom + "</tr>";
 	for(i=0;i<4;i++)
 	{
-		divplycom = divplycom + "<tr><td align='center'>Semi Finalist "+(i+1)+"</td><td>"+teams_list[semi_result[i]]+"</td>";
+		divplycom = divplycom + "<tr><td align='center'>Semi Finalist "+(i+1)+"</td><td>"+ teams_list[teams_list_st.indexOf(semi_result[i])] +"</td>";
 		if(ply1!=1000)
 		{
 			if(picks[ply1].pick[r4_end+i] == semi_result[i])
@@ -384,7 +384,7 @@ function semi_info()
 				divplycom = divplycom + "<td  bgcolor='silver'>";
 			else
 				divplycom = divplycom + "<td>";
-			divplycom = divplycom + teams_list[picks[ply1].pick[r4_end+i]]+"</td>";
+			divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply1].pick[r4_end+i])]+"</td>";
 		}	
 		if(ply2!=1000)
 		{
@@ -394,7 +394,7 @@ function semi_info()
 				divplycom = divplycom + "<td  bgcolor='silver'>";
 			else
 				divplycom = divplycom + "<td>";
-			divplycom = divplycom + teams_list[picks[ply2].pick[r4_end+i]]+"</td>";
+			divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply2].pick[r4_end+i])]+"</td>";
 		}
 		if(ply3!=1000)
 		{
@@ -404,19 +404,19 @@ function semi_info()
 				divplycom = divplycom + "<td  bgcolor='silver'>";
 			else
 				divplycom = divplycom + "<td>";
-			divplycom = divplycom + teams_list[picks[ply3].pick[r4_end+i]]+"</td>";
+			divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply3].pick[r4_end+i])]+"</td>";
 		}
 	}	
 	for(;i<6;i++)
 	{
-		divplycom = divplycom + "</tr><tr><td align='center'>Finalist "+(i-3)+"</td><td>"+teams_list[semi_result[i]]+"</td>";
+		divplycom = divplycom + "</tr><tr><td align='center'>Finalist "+(i-3)+"</td><td>"+teams_list[teams_list_st.indexOf(semi_result[i])]+"</td>";
 		if(ply1!=1000)
 		{
 			if(picks[ply1].pick[r4_end+i] == semi_result[4] || picks[ply1].pick[r4_end+i] == semi_result[5])
 				divplycom = divplycom + "<td  bgcolor='Aqua'>";
 			else
 				divplycom = divplycom + "<td>";
-			divplycom = divplycom + teams_list[picks[ply1].pick[r3_end+i]]+"</td>";
+			divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply1].pick[r4_end+i])]+"</td>";
 		}
 		if(ply2!=1000)
 		{
@@ -424,7 +424,7 @@ function semi_info()
 				divplycom = divplycom + "<td  bgcolor='Aqua'>";
 			else
 				divplycom = divplycom + "<td>";
-			divplycom = divplycom + teams_list[picks[ply2].pick[r4_end+i]]+"</td>";
+			divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply2].pick[r4_end+i])]+"</td>";
 		}
 		if(ply3!=1000)
 		{
@@ -432,17 +432,17 @@ function semi_info()
 				divplycom = divplycom + "<td  bgcolor='Aqua'>";
 			else
 				divplycom = divplycom + "<td>";
-			divplycom = divplycom + teams_list[picks[ply3].pick[r4_end+i]]+"</td>";
+			divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply3].pick[r4_end+i])]+"</td>";
 		}
 	}
-	divplycom = divplycom + "</tr><tr><td align='center'>Winner</td><td>"+teams_list[semi_result[6]]+"</td>";
+	divplycom = divplycom + "</tr><tr><td align='center'>Winner</td><td>"+teams_list[teams_list_st.indexOf(semi_result[6])]+"</td>";
 	if(ply1!=1000)
 	{
 		if(picks[ply1].pick[r4_end+i] == semi_result[i])
 			divplycom = divplycom + "<td  bgcolor='Darkorange'>";
 		else
 			divplycom = divplycom + "<td>";
-		divplycom = divplycom + teams_list[picks[ply1].pick[r4_end+i]]+"</td>";
+		divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply1].pick[r4_end+i])]+"</td>";
 	}
 	if(ply2!=1000)
 	{
@@ -450,7 +450,7 @@ function semi_info()
 			divplycom = divplycom + "<td  bgcolor='Darkorange'>";
 		else
 			divplycom = divplycom + "<td>";
-		divplycom = divplycom + teams_list[picks[ply2].pick[r4_end+i]]+"</td>";
+		divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply2].pick[r4_end+i])]+"</td>";
 	}
 	if(ply3!=1000)
 	{
@@ -458,7 +458,7 @@ function semi_info()
 			divplycom = divplycom + "<td  bgcolor='Darkorange'>";
 		else
 			divplycom = divplycom + "<td>";
-		divplycom = divplycom + teams_list[picks[ply3].pick[r4_end+i]]+"</td>";
+		divplycom = divplycom + teams_list[teams_list_st.indexOf(picks[ply3].pick[r4_end+i])]+"</td>";
 	}
 	divplycom = divplycom +"</tr></table>";
 	document.getElementById('semitable').innerHTML= divplycom;
