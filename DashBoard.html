@@ -61,6 +61,19 @@
                     <strong>The trick is to never lose hope!</strong>
                 </div>
             </a>
+            <br>
+            <a href="#" class="w3-bar-item w3-button w3-red w3-padding">
+                <div class="w3-text-white w3-hover-text-deep-blue w3-center" style="font-size: 2rem;">
+                    <strong>Did you know? In Round-5 you can win upto 79 points!</strong>
+                </div>
+            </a>
+
+            <!-- <br>
+            <a href="#" class="w3-bar-item w3-button w3-blue w3-padding">
+                <div class="w3-text-white w3-hover-text-deep-blue w3-center" style="font-size: 2rem;">
+                    <strong>Feedback!</strong>
+                </div>
+            </a> -->
         </div>
     </nav>
 
@@ -121,9 +134,9 @@
             </div>
 
             <!-- Rankings and Support count -->
-            <div class="w3-quarter">
+            <div class="w3-quarter" id="pie_chart_vs">
                 <!-- <div class="w3-margin-bottom" id="choose_round"></div> -->
-                <div class="w3-half">
+                <div class="w3-half" id="div_team_A">
                     <div class="w3-container ipl-csk w3-padding" id="choose_teamA_container">
                         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                         <div class="w3-right" id="choose_teamA_count">0</div>
@@ -131,7 +144,7 @@
                         <div id="choose_teamA">TEAM A</div>
                     </div>
                 </div>
-                <div class="w3-half">
+                <div class="w3-half" id="div_team_B">
                     <div class="w3-container ipl-kkr w3-padding" id="choose_teamB_container">
                         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                         <div class="w3-right" id="choose_teamB_count">0</div>
@@ -143,7 +156,7 @@
             </div>
 
             <!-- Team A bar chart -->
-            <div class="w3-quarter">
+            <div class="w3-quarter" id="bar_chart_vs">
                 <!-- <div id="myPlot_Pie_1" style="width:100%;max-width:500px;"></div> -->
                 <div id="myPlot_bar_1" style="width:100%;max-width:500px;"></div>
             </div>
@@ -151,17 +164,18 @@
         
         <!-- Second Team Row -->
         <div class="w3-row-padding w3-margin-bottom">
-            <!-- Pie chart -->
             <div class="w3-half">
-                <div id="myPlot_Donut_1" style="width:100%;max-width:500px"></div>
+                <div id="graph_1" style="width:100%;"></div>
             </div>
-            <!-- Team A bar chart -->
+            
             <div class="w3-quarter">
-                <div id="myPlot_hor_bar_1" style="width:100%;max-width:500px"></div>
+                <div id="tr_pie_3" style="width:100%;max-width:500px"></div>
             </div>
-            <!-- Team B bar chart -->
             <div class="w3-quarter">
-                <div id="myPlot_hor_bar_2" style="width:100%;max-width:500px"></div>
+                <div id="myPlot_Donut_1" style="width:100%;max-width:500px">
+                    <!-- <h5>Round-5 Statistics</h5> -->
+                    <img class="w3-image" src="people_choice.png" alt="team order">
+                </div>
             </div>
         </div>
         
@@ -216,11 +230,14 @@
         var TR2_teams = steam_short; // not yet released
         var TR3_teams = steam_short; // not yet released
         var TR4_teams = steam_short; // not yet released
+        var TR5_teams = steam_short; // not yet released
         
         var TR1_count = [30, 27, 33, 35, 28] // Manually update for first round;
-        var TR2_count = [30, 16, 26, 21, 31]; //not yet released
-        var TR3_count = [16, 23, 17, 23, 19]; //not yet released
-        var TR4_count = [15, 23, 14, 18, 9]; //not yet released
+        var TR2_count = [30, 16, 26, 21, 31];
+        var TR3_count = [16, 23, 17, 23, 19];
+        var TR4_count = [15, 23, 14, 18, 9];
+        var TR5_count = [16, 14, 23, 12, 19];
+
 
         var IPLcolorsObj = {CSK:"#FFFF3C", DC:"#00008B", GT:"#4752a1", KKR:"#2E0854", LSG:"#7fd2d8", MI:"#004BA0", PBKS:"#DCDDDF", RCB:"#EC1C24", RR:"#CBA92B", SRH:"#FF822A"};
         var IPLcolorsArr = ["#FFFF3C", "#00008B", "#4752a1", "#2E0854", "#7fd2d8", "#004BA0", "#DCDDDF", "#EC1C24", "#CBA92B", "#FF822A"];
@@ -279,7 +296,7 @@
             }];
 
             var layout = {
-                title: 'Team Participation',
+                title: chartTile,
                 annotations: [{
                         font: {size: 20},
                         showarrow: false,
@@ -306,7 +323,8 @@
 
         function showVerDblBarChart(x1, y1, x2, y2, ID, chartTile, chartLegend, trace1Color, trace2Color, name1, name2) {
             var trace1 = {
-            x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
+            // x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
+            x: x1,
             y: y1,
             type: 'bar',
             name: name1,
@@ -317,7 +335,8 @@
             };
 
             var trace2 = {
-            x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
+            // x: ["Elec", "RP", "WEC", "WPRS", "RoS"],
+            x: x2,
             y: y2,
             type: 'bar',
             name: name2,
@@ -378,6 +397,57 @@
             Plotly.newPlot(ID, data, layout);
         }
 
+        function teamGraph() {
+            var trace1 = {
+            x: ["R1", "R2", "R3", "R4", "R5"],
+            y: [TR1_count[0], TR2_count[0], TR3_count[0], TR4_count[0], TR5_count[0]],
+            mode: 'lines+markers',
+            type: 'scatter',
+            name: steam_short[0]
+            };
+
+            var trace2 = {
+            x: ["R1", "R2", "R3", "R4", "R5"],
+            y: [TR1_count[1], TR2_count[1], TR3_count[1], TR4_count[1], TR5_count[1]],
+            mode: 'lines+markers',
+            type: 'scatter',
+            name: steam_short[1]
+            };
+
+            var trace3 = {
+            x: ["R1", "R2", "R3", "R4", "R5"],
+            y: [TR1_count[2], TR2_count[2], TR3_count[2], TR4_count[2], TR5_count[2]],
+            mode: 'lines+markers',
+            type: 'scatter',
+            name: steam_short[2]
+            };
+
+            var trace4 = {
+            x: ["R1", "R2", "R3", "R4", "R5"],
+            y: [TR1_count[3], TR2_count[3], TR3_count[3], TR4_count[3], TR5_count[3]],
+            mode: 'lines+markers',
+            type: 'scatter',
+            name: steam_short[3]
+            };
+
+            var trace5 = {
+            x: ["R1", "R2", "R3", "R4", "R5"],
+            y: [TR1_count[4], TR2_count[4], TR3_count[4], TR4_count[4], TR5_count[4]],
+            mode: 'lines+markers',
+            type: 'scatter',
+            name: steam_short[4]
+            };
+
+            var layout = {
+            title: 'Team Participation Trend R1-R5',
+            height: "295",
+            margin: {"t": 50, "b": 50, "l": 30, "r": 30}
+            };
+
+            var data = [trace1, trace2, trace3, trace4, trace5];
+            Plotly.newPlot('graph_1', data, layout);
+        }
+
         function calcTeamSupport() {
             var mat1 = [];
             for (let i = 0; i < picks.length; i++) {
@@ -402,35 +472,43 @@
                 p = parseInt(matnum) - 1;
             }
 
-            document.getElementById("choose_teamA").innerHTML = teams_list_st[teams_list_st.indexOf(team1[p])];
-            document.getElementById("choose_teamB").innerHTML = teams_list_st[teams_list_st.indexOf(team2[p])];
-
-            document.getElementById("choose_teamA_count").innerHTML = team1_bets[p];
-            document.getElementById("choose_teamB_count").innerHTML = team2_bets[p];
-
             document.getElementById("img_centered_teamA").innerHTML = "<img src='" + team1[p].toLowerCase() + ".png'>";
             document.getElementById("img_centered_teamB").innerHTML = "<img src='" + team2[p].toLowerCase() + ".png'>";
             
-            document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + IPLcolorClss[teams_list_st.indexOf(team1[p])];
-            document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + IPLcolorClss[teams_list_st.indexOf(team2[p])];
+            console.log("Match No. " + p);
+            if (p<69) {
+                document.getElementById("div_team_A").style.display="";
+                document.getElementById("div_team_B").style.display="";
+                document.getElementById("choose_pie_chart").style.display="";
+                document.getElementById("myPlot_bar_1").style.display="";
 
-            if (Number(team1_bets[p]) > Number(team2_bets[p])) {
-                document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team1[p])] + ";");
+                document.getElementById("choose_teamA").innerHTML = teams_list_st[teams_list_st.indexOf(team1[p])];
+                document.getElementById("choose_teamB").innerHTML = teams_list_st[teams_list_st.indexOf(team2[p])];
+
+                document.getElementById("choose_teamA_count").innerHTML = team1_bets[p];
+                document.getElementById("choose_teamB_count").innerHTML = team2_bets[p];
+
+                document.getElementById("choose_teamA_container").className = "w3-container w3-padding-16 " + IPLcolorClss[teams_list_st.indexOf(team1[p])];
+                document.getElementById("choose_teamB_container").className = "w3-container w3-padding-16 " + IPLcolorClss[teams_list_st.indexOf(team2[p])];
+            
+                if (Number(team1_bets[p]) > Number(team2_bets[p])) {
+                    document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team1[p])] + ";");
+                } else {
+                    document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team2[p])] + ";");
+                }
+
+                showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Support", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
+                // showPieChart(TR1_teams, TR1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
+                showVerDblBarChart(steam_short, team1_steam_supp[p].steam, steam_short, team2_steam_supp[p].steam, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
             } else {
-                document.getElementById("img_centered_text").setAttribute("style", "color:" + IPLcolorsArr[teams_list_st.indexOf(team2[p])] + ";");
+                update_final_match_info();
             }
 
-            showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Support", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
-            // showPieChart(TR1_teams, TR1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
-            
-            showVerDblBarChart(null, team1_steam_supp[p].steam, null, team2_steam_supp[p].steam, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
             showDonutPieChart("tr_pie_1", "Participation Rate - Round 1 and 2", false, TR1_count, TR1_teams, TR2_count, TR2_teams, "R1", "R2");
             showDonutPieChart("tr_pie_2", "Participation Rate - Round 3 and 4", false, TR3_count, TR3_teams, TR4_count, TR4_teams, "R3", "R4");
-
-
-            // showHorBarChart([17, 8, 12, 12, 6], null, "myPlot_hor_bar_1", "Group Supports for " + team1[p], IPLcolorsArr[teams_list_st.indexOf(team1[p])]);
-            // showHorBarChart([18, 25, 18, 15, 22], null, "myPlot_hor_bar_2", "Group Supports for " + team2[p], IPLcolorsArr[teams_list_st.indexOf(team2[p])]);
-
+            showDonutPieChart("tr_pie_3", "Participation Rate - Round 5", false, TR5_count, TR5_teams, null, null, "R5", "");
+        
+            teamGraph();
             // showVerBarChart(null, [17, 8, 12, 12, 6, 18, 2, 7], "myPlot_hor_bar_1", "Team Entries for CSK", "rgba(255,0,0,0.6)");
             // showVerBarChart(null, [7, 2, 2, 5, 0, 5, 1, 0], "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
             console.log(team1_steam_supp[p].steam);
@@ -440,6 +518,24 @@
             let date = d.getDate() + '-' + (d.getMonth()+1) + '-' + d.getFullYear();
             document.getElementById("cur_date1").innerText = date;
         };
+
+        function update_final_match_info() {
+            var matid = document.getElementById("choose_match_id");
+            if (matid.options[matid.selectedIndex].value == "default") {
+                p = match_result.length;
+                if (p >= matches)
+                    p = matches - 1;
+            } else {
+                var matnum = matid.options[matid.selectedIndex].value;
+                p = parseInt(matnum) - 1;
+            }
+            
+            document.getElementById("div_team_A").style.display="none";
+            document.getElementById("div_team_B").style.display="none";
+            
+            showPieChart(teams_list_st, [4,1,38,1,17,1,1,9,17,3], "choose_pie_chart", "Support for Winner (Round-5)", true, 450, IPLcolorsArr);
+            showHorBarChart([80,56,22,3,9,6,2,2,0,4].reverse(), ["GT","LSG","RR","DC","RCB","KKR","CSK","SRH","PBKS","MI"].reverse(), "myPlot_bar_1", "Support for Final Contenders", ["#4752a1", "#7fd2d8", "#CBA92B", "#00008B", "#EC1C24", "#2E0854", "#FFFF3C", "#FF822A", "#DCDDDF", "#004BA0"].reverse());
+        }
 
         /*=================================*\
 				Home Match Selection
