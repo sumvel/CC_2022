@@ -165,16 +165,16 @@
         <!-- Second Team Row -->
         <div class="w3-row-padding w3-margin-bottom">
             <div class="w3-half">
-                <div id="graph_1" style="width:100%;"></div>
+                <!-- <div id="graph_1" style="width:100%;"></div> -->
             </div>
             
             <div class="w3-quarter">
-                <div id="tr_pie_3" style="width:100%;max-width:500px"></div>
+                <!-- <div id="tr_pie_3" style="width:100%;max-width:500px"></div> -->
             </div>
             <div class="w3-quarter">
                 <div id="myPlot_Donut_1" style="width:100%;max-width:500px">
                     <!-- <h5>Round-5 Statistics</h5> -->
-                    <img class="w3-image" src="people_choice.png" alt="team order">
+                    <!-- <img class="w3-image" src="people_choice.png" alt="team order"> -->
                 </div>
             </div>
         </div>
@@ -499,16 +499,16 @@
 
                 showPieChart([teams_list_st[teams_list_st.indexOf(team1[p])], teams_list_st[teams_list_st.indexOf(team2[p])]], [team1_bets[p], team2_bets[p]], "choose_pie_chart", "Support", false, 347.5, [IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])]]);
                 // showPieChart(TR1_teams, TR1_count, "myPlot_Pie_1", "Participation Round: 1", false, 450);
-                showVerDblBarChart(steam_short, team1_steam_supp[p].steam, steam_short, team2_steam_supp[p].steam, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
             } else {
                 update_final_match_info();
             }
 
-            showDonutPieChart("tr_pie_1", "Participation Rate - Round 1 and 2", false, TR1_count, TR1_teams, TR2_count, TR2_teams, "R1", "R2");
-            showDonutPieChart("tr_pie_2", "Participation Rate - Round 3 and 4", false, TR3_count, TR3_teams, TR4_count, TR4_teams, "R3", "R4");
-            showDonutPieChart("tr_pie_3", "Participation Rate - Round 5", false, TR5_count, TR5_teams, null, null, "R5", "");
+            showVerDblBarChart(steam_short, team1_steam_supp[p].steam, steam_short, team2_steam_supp[p].steam, "myPlot_bar_1", "Group Supports", false, IPLcolorsArr[teams_list_st.indexOf(team1[p])], IPLcolorsArr[teams_list_st.indexOf(team2[p])], team1[p], team2[p]);
+            showDonutPieChart("tr_pie_1", "Participation - Round 1 and 2", false, TR1_count, TR1_teams, TR2_count, TR2_teams, "R1", "R2");
+            showDonutPieChart("tr_pie_2", "Participation - Round 3 and 4", false, TR3_count, TR3_teams, TR4_count, TR4_teams, "R3", "R4");
+            // showDonutPieChart("tr_pie_3", "Participation Rate - Round 5", false, TR5_count, TR5_teams, null, null, "R5", "");
         
-            teamGraph();
+            // teamGraph();
             // showVerBarChart(null, [17, 8, 12, 12, 6, 18, 2, 7], "myPlot_hor_bar_1", "Team Entries for CSK", "rgba(255,0,0,0.6)");
             // showVerBarChart(null, [7, 2, 2, 5, 0, 5, 1, 0], "myPlot_hor_bar_2", "Team Entries for KKR", "rgba(0, 102, 255, 0.6)");
             console.log(team1_steam_supp[p].steam);
@@ -533,8 +533,8 @@
             document.getElementById("div_team_A").style.display="none";
             document.getElementById("div_team_B").style.display="none";
             
-            showPieChart(teams_list_st, [4,1,38,1,17,1,1,9,17,3], "choose_pie_chart", "Support for Winner (Round-5)", true, 450, IPLcolorsArr);
-            showHorBarChart([80,56,22,3,9,6,2,2,0,4].reverse(), ["GT","LSG","RR","DC","RCB","KKR","CSK","SRH","PBKS","MI"].reverse(), "myPlot_bar_1", "Support for Final Contenders", ["#4752a1", "#7fd2d8", "#CBA92B", "#00008B", "#EC1C24", "#2E0854", "#FFFF3C", "#FF822A", "#DCDDDF", "#004BA0"].reverse());
+            showPieChart(teams_list_st, [4,1,38,1,17,1,1,9,17,3], "choose_pie_chart", "Support for Winner", true, 450, IPLcolorsArr);
+            // showHorBarChart([80,56,22,3,9,6,2,2,0,4].reverse(), ["GT","LSG","RR","DC","RCB","KKR","CSK","SRH","PBKS","MI"].reverse(), "myPlot_bar_1", "Support for Final Contenders", ["#4752a1", "#7fd2d8", "#CBA92B", "#00008B", "#EC1C24", "#2E0854", "#FFFF3C", "#FF822A", "#DCDDDF", "#004BA0"].reverse());
         }
 
         /*=================================*\
