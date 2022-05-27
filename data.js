@@ -17,7 +17,7 @@ if(week_num>0)
 
 //match_result[0] = "KKR";
 //match_result[1] = "DC";
-var semi_result = new Array("GT", "RR", "LSG", "RCB", "GT", "TBD", "TBD");
+var semi_result = new Array("GT", "RR", "LSG", "RCB", "GT", "RR", "TBD");
 
 var teams_list = new Array("Chennai Super Kings", "Delhi Capitals", "Gujarat Titans", "Kolkata Knight Riders", "Lucknow Super Giants", "Mumbai Indians", "Punjab Kings", "Royal Challengers Banglore", "Rajasthan Royals", "Sun Risers Hyderabad", "Not Selected", "To be decided");
 var teams_list_st = new Array("CSK", "DC", "GT", "KKR", "LSG", "MI", "PBKS", "RCB", "RR", "SRH", "NS", "TBD");
